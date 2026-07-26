@@ -2779,7 +2779,7 @@ where `f(t,D)` is how many times *t* appears in *D*, `|D|` is the passage length
 | **B** (middle) | "warranty warranty warranty warranty … boilerplate" | Lots of *warranty*, but saturation caps the repetition and it's missing *roof* → middle |
 | **C** (bottom) | "…the roof over the building…" (one hit in a long paragraph) | Only one term, buried in length → length-normalized down → lowest |
 
-Raw match-count would wrongly float **B** to the top; BM25 puts **A** first — the passage a person would actually want to read. (Note: peekdocs applies this scoring over the matched results in-process, which is why it works on the exact-substring search path — it isn't limited to the index's own token matching. See **BM25** in the [Glossary](GLOSSARY.md) for the short version.)
+Raw match-count would wrongly float **B** to the top; BM25 puts **A** first — the passage a person would actually want to read. (Note: peekdocs applies this scoring over the matched results in-process, which is why it works on the exact-substring search path — it isn't limited to the index's own token matching. See [**BM25**](GLOSSARY.md#bm25) in the Glossary for the short version.)
 
 ## Advanced search modes
 
