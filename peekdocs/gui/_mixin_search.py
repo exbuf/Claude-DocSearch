@@ -962,8 +962,22 @@ class SearchMixin:
         # Resume auto-refresh schedule if active
         self._reschedule_refresh()
 
-        # Suggest indexing for large folders without an index
-        if returncode in (0, 1) and self.index_search_var.get() != "on":
+        # The "ranking needs an index" note otherwise only rides at the tail of
+        # the right-pane summary, where it's easy to miss (a user watching the
+        # status line reported seeing nothing). Echo it prominently, in amber,
+        # on the persistent bottom status line where the eye naturally lands.
+        _rank_needs_index = "Note: --rank needs the search index" in (stdout or "")
+        if returncode in (0, 1) and _rank_needs_index:
+            _cur_status = self.status_label.cget("text")
+            self.status_label.configure(
+                text=_cur_status + "  |  ⚠ Sort by relevance needs an index — results are shown in file order, not by relevance",
+                text_color=("#B26A00", "#FFB74D"),
+            )
+
+        # Suggest indexing for large folders without an index. Yield to the more
+        # specific rank warning above so two "build an index" messages don't
+        # stack on the same status line.
+        if returncode in (0, 1) and self.index_search_var.get() != "on" and not _rank_needs_index:
             _files_match = _re_fin.search(r"Files searched:\s*(\d+)", stdout or "")
             if _files_match:
                 _file_count = int(_files_match.group(1))
