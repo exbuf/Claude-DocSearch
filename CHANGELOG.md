@@ -117,7 +117,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   server's** own default is unchanged at 200 — only *generated configs* changed.
 
 ### Fixed
-- **Relevance ranking — two pre-release fixes** (the `--rank` feature above is
+- **Relevance ranking — pre-release fixes** (the `--rank` feature above is
   new this cycle; these were caught in testing before it shipped):
   - **`--rank` was swallowed as a search term.** The CLI detected the flag but
     never removed it from the argument list, so it leaked into the query — e.g.
@@ -127,6 +127,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - **GUI: the "Sort by relevance" checkbox overlapped the output-format row.**
     It was placed on the same grid row as the DOCX/CSV/JSON/PDF/HTML checkboxes;
     it now sits on its own line above them.
+  - **GUI: turning on "Sort by relevance" without an index gave no feedback.**
+    Ranking silently fell back to file order because the "needs an index" note
+    was printed to a stream the GUI doesn't read and was suppressed in its quiet
+    mode — so the checkbox looked like it did nothing. The note now reaches the
+    GUI, and the "?" index help explains that an index also powers Sort by
+    relevance.
+  - **GUI: that note is now shown where you'll see it.** It previously rode only
+    at the tail of the right-pane results headline, easy to miss; it now also
+    appears on the bottom status line in amber ("results are shown in file
+    order, not by relevance").
 
 ### Docs
 - **MCP data-flow diagram** (e623640, f27550a, `README.md`,
