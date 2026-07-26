@@ -230,6 +230,22 @@ def test_parse_summary_with_errors():
     assert "3 file(s) could not be read" in result
 
 
+def test_parse_summary_rank_needs_index():
+    # When "Sort by relevance" is on but no index is available, the CLI prints a
+    # "Note: --rank needs the search index …" line to stdout; the GUI must
+    # surface it so the checkbox never silently no-ops.
+    stdout = (
+        "Note: --rank needs the search index (no index in this folder — run `peekdocs --index`); results are in file order.\n"
+        "Files searched: 5 (1.23 MB)\n"
+        "Found \033[1;94m12\033[0m match(es).\n"
+        "Elapsed time: 1.45 seconds, Cores used: 4 of 8\n"
+    )
+    result = _parse_summary_text(stdout)
+    assert "Sort by relevance needs a search index" in result
+    # Sanity: the normal metrics still come through alongside the note.
+    assert "12 match(es)" in result
+
+
 def test_parse_summary_empty():
     assert _parse_summary_text("") == ""
     assert _parse_summary_text(None) == ""

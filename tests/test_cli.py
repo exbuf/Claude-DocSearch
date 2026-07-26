@@ -106,6 +106,20 @@ def test_rank_flag_not_swallowed_as_search_term(tmp_path, monkeypatch, capsys):
     assert main(["bowling", "night", "-a", "--rank"]) == 0
 
 
+def test_rank_note_reaches_stdout_under_quiet(tmp_path, monkeypatch, capsys):
+    # The GUI always runs with -q. When "Sort by relevance" (--rank) is on but
+    # no index will be used, the "needs the search index" note must land on
+    # STDOUT and must NOT be quiet-suppressed — that's the only channel the GUI
+    # parses (_parse_summary_text). Regression guard: it used to print to stderr
+    # AND be gated by -q, so the GUI showed nothing and the checkbox looked dead.
+    (tmp_path / "a.txt").write_text("bowling night was great\n")
+    monkeypatch.chdir(tmp_path)
+    assert main(["bowling", "--rank", "--no-index", "-q"]) == 0
+    captured = capsys.readouterr()
+    assert "--rank needs the search index" in captured.out
+    assert "--rank needs the search index" not in captured.err
+
+
 def test_search_no_matches(tmp_path, monkeypatch, capsys):
     doc = Document()
     doc.add_paragraph("Nothing here")

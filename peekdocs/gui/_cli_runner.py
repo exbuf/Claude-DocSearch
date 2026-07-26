@@ -435,6 +435,15 @@ def _parse_summary_text(stdout):
     if stale_match:
         parts.append("— index settings out of sync (run --index to refresh)")
 
+    # Surface the "Note: --rank needs the search index — …" line emitted when
+    # the user ticked "Sort by relevance" but no usable index was available, so
+    # ranking silently fell back to file order. Without this the checkbox looks
+    # like it does nothing. (The CLI prints this to stdout, un-quiet-gated,
+    # precisely so it can be picked up here.)
+    rank_match = re.search(r"Note: --rank needs the search index", clean)
+    if rank_match:
+        parts.append("— Sort by relevance needs a search index (results left in file order)")
+
     return " ".join(parts) if parts else ""
 
 

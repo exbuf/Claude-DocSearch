@@ -2080,11 +2080,16 @@ def _main_inner(argv: list[str] | None = None) -> int:
     # --rank needs the index (BM25-style relevance is applied on the indexed
     # path). If ranking was requested but the index won't be used, say so rather
     # than silently returning file-order results.
-    if want_rank and not _will_use_index and not (stdout_json or minimal or quiet):
+    if want_rank and not _will_use_index and not (stdout_json or minimal):
         reason = "no index in this folder — run `peekdocs --index`" if not no_index \
             else "--no-index was set"
-        print(f"Note: --rank needs the search index ({reason}); results are in file order.",
-              file=sys.stderr)
+        # Print to stdout and do NOT quiet-gate this: the GUI always runs with
+        # -q, so a stderr/quiet-suppressed note never reaches it and "Sort by
+        # relevance" silently returns file-order results with no explanation.
+        # stdout + un-gated lets _parse_summary_text surface it, matching the
+        # sibling "index bypassed" / stale-index notes (JSON/minimal still opt
+        # out so machine-readable output stays clean).
+        print(f"Note: --rank needs the search index ({reason}); results are in file order.")
     display_label = expression if expression else ' '.join(search_terms)
     if not display_label and range_specs_raw:
         display_label = " ".join(range_specs_raw)

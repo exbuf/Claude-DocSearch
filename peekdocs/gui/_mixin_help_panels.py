@@ -648,6 +648,9 @@ class HelpPanelsMixin:
         b("index in your top folder covers everything underneath it.")
         b("You don't need to build separate indexes in each subfolder.")
         b("The index speeds up repeated searches on large folders.")
+        b("An index also powers Sort by relevance (BM25 ranking) in")
+        b("Advanced Search Options \u2014 without one, relevance sort falls")
+        b("back to file order.")
         b("\u2022 See the full file reference in the README for details on each file")
 
         txt.configure(state="disabled")
