@@ -89,7 +89,7 @@ from choosing the wrong one.
 **instruct** model. Specifically:
 
 - ✅ **Pick:** `Qwen2.5-7B-Instruct` (or another instruct model known for tool use, like
-  Llama 3.1 8B Instruct).
+  **Llama 3.1 8B Instruct** or a recent **Mistral** instruct build).
 - ❌ **Avoid `VL` / "Vision"** builds (e.g. `Qwen2.5-VL-7B`). These are for *images* and usually
   **can't call tools** — the assistant will just make up an answer instead of searching. This is
   the single most common way this setup fails.
