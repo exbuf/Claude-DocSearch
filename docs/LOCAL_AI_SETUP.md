@@ -33,6 +33,64 @@ You'll connect three things:
 When it's done, the model, peekdocs, and your documents all live on your machine. Nothing leaves
 it.
 
+## How it works (the flow)
+
+Once everything's connected, here's what happens when you ask a question — and why nothing leaves
+your machine:
+
+```
+  You ask, in plain English  ("which files mention renewal?")
+        │
+        ▼
+  ┌────────────────────────────────────────────────┐
+  │ LM Studio                                       │
+  │   the AI model decides to search and emits a    │
+  │   "tool call" — it never touches your files     │
+  │   itself                                        │
+  └───────────────┬────────────────────────────────┘
+                  │   MCP request           (results travel back up ▲)
+                  ▼
+  ┌────────────────────────────────────────────────┐
+  │ peekdocs-mcp   (a read-only connector)          │
+  │   • confirms the folder is inside your --root   │
+  │   • search / list only — no create/move/delete  │
+  └───────────────┬────────────────────────────────┘
+                  │   plain function call
+                  ▼
+  ┌────────────────────────────────────────────────┐
+  │ peekdocs  →  your files                         │
+  │   the real, exact-text search; returns          │
+  │   matches as file names + line numbers          │
+  └────────────────────────────────────────────────┘
+```
+
+**Four parts, each with one job:**
+
+1. **The AI model** (running inside LM Studio) reads your question and *decides* whether to
+   search. If it does, it emits a structured **tool call** — it does **not** reach into your
+   files itself. This is why the model must be *tool-capable*: a vision (`VL`) or base model
+   can't make that call, so it just guesses — the #1 reason setups fail.
+2. **LM Studio** is the middleman (the **MCP host**). It started **peekdocs-mcp** for you and
+   talks to it over a small standard protocol called **MCP**. It turns the model's tool call
+   into an MCP request, then feeds the results back to the model.
+3. **peekdocs-mcp** is a small, **read-only** connector — it can only search, fetch context,
+   inventory, and list; it can't create, move, or delete anything. Before every search it
+   confirms the folder is **inside your `--root`** (resolving shortcuts and `..` first), so the
+   assistant can only ever look where you allowed. Ask it to search outside that fence and it
+   refuses.
+4. **peekdocs** does the actual finding — the same exact-text search the app always does — and
+   hands back matches as file names and line numbers.
+
+So the division of labour is simple: **peekdocs finds** (exact and repeatable — the same question
+gives the same matches), and **the AI phrases** (it reads those matches and answers in words). The
+model never sees your disk; it only ever sees the specific matches peekdocs returns, fenced by
+`--root`. That's the whole privacy story — with a local model, your question, the file snippets,
+and the answer all stay on your computer.
+
+> A **cloud** assistant (see the last section) works exactly the same way — only the model runs
+> elsewhere. The connector and the `--root` fence are identical; the difference is just where the
+> model lives and whether the snippets leave your machine.
+
 ## A few words you'll run into
 
 You don't need to *understand* these deeply — just recognize them:
