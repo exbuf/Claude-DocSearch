@@ -115,6 +115,22 @@ You don't need to *understand* these deeply — just recognize them:
 - An internet connection **for the downloads only**. Once everything's installed, it all works
   offline.
 
+**In short, the pieces you download and install** — base peekdocs by itself needs *none* of these;
+they're only for adding an AI assistant:
+
+1. **A runtime** — **LM Studio** (this guide) *or* **Ollama**. It runs the AI model on your own
+   computer.
+2. **A model** — one **tool-capable instruct** model (~4.5–5 GB, e.g. Qwen2.5-7B-Instruct),
+   downloaded *through* the runtime (Steps 1–2).
+3. **The peekdocs connector** — comes *with* peekdocs (the `[mcp]` extra in your install command),
+   not a separate download (Step 3).
+4. **An MCP client — only if you use Ollama** (e.g. `ollmcp`), because Ollama isn't itself an MCP
+   host. With **LM Studio you don't need one** — it's the model runner *and* the host in a single
+   app.
+
+So the LM Studio path is essentially **two downloads** (the app + a model); the Ollama route adds a
+separate MCP client.
+
 > **Known-good as of July 2026:** LM Studio 0.4.19 + Qwen2.5-7B-Instruct. The local-AI ecosystem
 > moves fast — app menus and model builds shift often. The **peekdocs** steps here are stable;
 > the host-app (LM Studio) UI details are illustrative, so if a menu has moved, check that app's
