@@ -112,7 +112,7 @@ And when you'd rather ask than search, peekdocs connects to an AI assistant thro
 
 One workbench—from quick word lookups to AI-assisted document analysis—deterministic, private, and fully local (cloud AI optional).
 
-Everything runs locally—no cloud, no telemetry, no network calls. Available as a GUI, CLI, and Python API on Windows, macOS, and Linux. Free and open source under the MIT License.
+peekdocs runs entirely on your machine and makes no network calls of its own—no cloud services, no telemetry. Available as a GUI, CLI, and Python API on Windows, macOS, and Linux. Free and open source under the MIT License.
 
 **Why it matters**
 
