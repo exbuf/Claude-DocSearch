@@ -108,7 +108,7 @@ peekdocs is a local document search workbench that grows with your needs. At its
 
 Everything runs locally — no cloud, no telemetry, no network calls. Available as a GUI, CLI, and Python API, on Windows, macOS, and Linux. Free and open-source under the MIT License.
 
-**Why it matters:** as AI puts more answers in front of you, exact and *checkable* ones become more valuable — and that's peekdocs's whole point. It returns deterministic ground truth: the literal terms and patterns you asked for, the same way every time, each hit pinned to a file and line (with an optional SHA-256 fingerprint) so you can verify it against the source. Because everything stays on your machine, it works on corpora and computers that never touch the internet. Paired with a local AI assistant through the optional MCP interface, peekdocs becomes the precise, private retrieval layer that grounds the model in your actual files — well suited for research, QA, automation, and AI workflows.
+**Why it matters:** exact, *checkable* results matter more as AI puts more answers in front of you. Every hit carries an optional SHA-256 fingerprint so you can verify it against the source — and because everything stays on your machine, peekdocs works on corpora and computers that never touch the internet, well suited for research, QA, automation, and grounding a local AI model in your actual files.
 
 **Typical workflow:** Search a folder of mixed-format documents → inspect matches in the Results Preview → generate a TXT report — plus optional JSON, CSV, or yellow-highlighted DOCX, PDF, or HTML → save the search → add it to a Search Suite → schedule it weekly.
 
