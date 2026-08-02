@@ -110,7 +110,7 @@ When your work demands more, use fuzzy matching for typos, regex and Boolean exp
 
 And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. Every answer remains traceable to the original file and line, and with a local model, nothing ever leaves your machine.
 
-One workbench—from quick word lookups to AI-assisted document analysis—deterministic, private, and fully local.
+One workbench—from quick word lookups to AI-assisted document analysis—deterministic, private, and fully local (cloud AI optional).
 
 Everything runs locally—no cloud, no telemetry, no network calls. Available as a GUI, CLI, and Python API on Windows, macOS, and Linux. Free and open source under the MIT License.
 
