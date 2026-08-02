@@ -22,7 +22,7 @@ peekdocs es un banco de trabajo de búsqueda local que se adapta a tus necesidad
 
 Verdad fundamental determinista: la misma búsqueda da los mismos resultados, con cada coincidencia rastreable a un archivo y una línea para que puedas verificarla contra la fuente, todo ejecutándose localmente — sin nube, sin telemetría, sin llamadas de red. Combinado con un asistente de IA local, peekdocs es la capa de recuperación precisa y privada que ancla el modelo en tus archivos reales.
 
-**Flujo de trabajo típico:** Buscar en una carpeta de documentos de formato mixto → revisar coincidencias en la Vista previa de resultados → generar un informe DOCX o HTML resaltado → guardar la búsqueda → añadirla a un Conjunto de Búsqueda → programarla semanalmente.
+**Flujo de trabajo típico:** Buscar en una carpeta de documentos de formato mixto → revisar coincidencias en la Vista previa de resultados → generar un informe TXT (u opcionalmente JSON, CSV, o un DOCX/PDF/HTML resaltado) → guardar la búsqueda → añadirla a un Conjunto de Búsqueda → programarla semanalmente.
 
 **El flujo principal de trabajo está disponible en español** — la pantalla principal, los botones de búsqueda, las opciones de búsqueda avanzada y los mensajes de estado más comunes. Las ventanas de ayuda, los diálogos detallados, los mensajes del CLI y los informes de salida permanecen en inglés más abajo.
 
@@ -36,7 +36,7 @@ peekdocs est un atelier de recherche locale qui s'adapte à vos besoins. Au plus
 
 Une vérité de référence déterministe : la même recherche donne les mêmes résultats, chaque correspondance étant traçable jusqu'à un fichier et une ligne pour que vous puissiez la vérifier par rapport à la source, le tout s'exécutant localement — pas de cloud, pas de télémétrie, pas d'appels réseau. Associé à un assistant IA local, peekdocs est la couche de récupération précise et privée qui ancre le modèle dans vos fichiers réels.
 
-**Flux de travail typique :** Rechercher dans un dossier de documents de formats mixtes → examiner les correspondances dans l'Aperçu des résultats → générer un rapport DOCX ou HTML surligné → enregistrer la recherche → l'ajouter à une Suite de recherche → la planifier chaque semaine.
+**Flux de travail typique :** Rechercher dans un dossier de documents de formats mixtes → examiner les correspondances dans l'Aperçu des résultats → générer un rapport TXT (ou, en option, JSON, CSV, ou un DOCX/PDF/HTML surligné) → enregistrer la recherche → l'ajouter à une Suite de recherche → la planifier chaque semaine.
 
 **Le flux de travail principal est disponible en français** — la page principale, les boutons de recherche, les options de recherche avancées et les messages de statut les plus courants. Les fenêtres d'aide, les dialogues détaillés, les messages CLI et les rapports de sortie restent en anglais ci-dessous.
 
@@ -50,7 +50,7 @@ peekdocs ist eine lokale Such-Werkbank, die mit Ihren Anforderungen wächst. Gan
 
 Deterministische Grundwahrheit: Dieselbe Suche liefert dieselben Ergebnisse, jeder Treffer rückverfolgbar bis zu Datei und Zeile, sodass Sie ihn gegen die Quelle prüfen können — alles läuft lokal, keine Cloud, keine Telemetrie, keine Netzwerkaufrufe. In Kombination mit einem lokalen KI-Assistenten ist peekdocs die präzise, private Retrieval-Schicht, die das Modell in Ihren echten Dateien verankert.
 
-**Typischer Arbeitsablauf:** Einen Ordner mit gemischten Dokumenten durchsuchen → Treffer in der Ergebnis-Vorschau prüfen → einen hervorgehobenen DOCX- oder HTML-Bericht erstellen → die Suche speichern → sie zu einer Such-Suite hinzufügen → wöchentlich planen.
+**Typischer Arbeitsablauf:** Einen Ordner mit gemischten Dokumenten durchsuchen → Treffer in der Ergebnis-Vorschau prüfen → einen TXT-Bericht erstellen (oder optional JSON, CSV oder einen hervorgehobenen DOCX/PDF/HTML) → die Suche speichern → sie zu einer Such-Suite hinzufügen → wöchentlich planen.
 
 **Der Haupt-Arbeitsablauf ist auf Deutsch verfügbar** — die Hauptseite, die Such-Schaltflächen, die erweiterten Suchoptionen und die häufigsten Status-Meldungen. Hilfe-Fenster, detaillierte Dialoge, CLI-Meldungen und Ausgabe-Berichte bleiben auf Englisch weiter unten.
 
@@ -64,7 +64,7 @@ peekdocs はニーズに合わせて広がるローカルな検索ワークベ�
 
 検証できる、決定論的な結果。同じ検索は常に同じ結果を返し、各一致はファイルと行までたどれるので、元の情報源と照合できます。すべてローカルで動作し、クラウドなし、テレメトリーなし、ネットワーク通信なし。ローカルの AI アシスタントと組み合わせれば、peekdocs はモデルを実際のファイルに結びつける、正確でプライベートな検索（リトリーバル）層になります。
 
-**典型的なワークフロー：** 混合形式のドキュメントフォルダを検索 → 結果プレビューで一致箇所を確認 → ハイライト付きの DOCX または HTML レポートを生成 → 検索を保存 → 検索スイートに追加 → 毎週スケジュール実行。
+**典型的なワークフロー：** 混合形式のドキュメントフォルダを検索 → 結果プレビューで一致箇所を確認 → TXT レポートを生成（オプションで JSON、CSV、またはハイライト付きの DOCX/PDF/HTML） → 検索を保存 → 検索スイートに追加 → 毎週スケジュール実行。
 
 **主要なワークフロー (メインページ、検索ボタン、詳細検索オプション、一般的なステータスメッセージ) は日本語で利用できます。** ヘルプウィンドウ、詳細ダイアログ、CLI メッセージ、出力レポートは英語のままです。詳細は下の英語版をご覧ください。
 
@@ -78,7 +78,7 @@ peekdocs 是一款随需求而扩展的本地搜索工作台。最简单的用�
 
 可验证的确定性结果：相同的搜索始终返回相同的结果，每个匹配项都可追溯到具体的文件和行，便于您与原始来源核对。一切均在本地运行，无云端、无遥测、无网络调用。与本地 AI 助手搭配使用时，peekdocs 便成为将模型锚定于您真实文件的精确且私密的检索层。
 
-**典型工作流程：** 搜索混合格式的文档文件夹 → 在结果预览中查看匹配项 → 生成高亮显示的 DOCX 或 HTML 报告 → 保存搜索 → 将其添加到搜索套件 → 安排每周运行。
+**典型工作流程：** 搜索混合格式的文档文件夹 → 在结果预览中查看匹配项 → 生成 TXT 报告（或可选 JSON、CSV，或带高亮的 DOCX/PDF/HTML） → 保存搜索 → 将其添加到搜索套件 → 安排每周运行。
 
 **主要工作流程已提供简体中文版本 — 主页面、搜索按钮、高级搜索选项以及最常见的状态消息。** 帮助窗口、详细对话框、CLI 消息和输出报告仍为英文。详细信息请参见下方英文版。
 
@@ -92,7 +92,7 @@ O peekdocs é uma bancada de trabalho de busca local que cresce conforme suas ne
 
 Uma verdade de referência determinística: a mesma pesquisa produz os mesmos resultados, com cada correspondência rastreável até um arquivo e uma linha para que você possa verificá-la em relação à fonte, tudo executado localmente — sem nuvem, sem telemetria, sem chamadas de rede. Combinado com um assistente de IA local, o peekdocs é a camada de recuperação precisa e privada que ancora o modelo em seus arquivos reais.
 
-**Fluxo de trabalho típico:** Pesquisar uma pasta de documentos de formatos mistos → inspecionar correspondências na Pré-visualização de Resultados → gerar um relatório DOCX ou HTML destacado → salvar a pesquisa → adicioná-la a um Conjunto de Pesquisa → agendá-la semanalmente.
+**Fluxo de trabalho típico:** Pesquisar uma pasta de documentos de formatos mistos → inspecionar correspondências na Pré-visualização de Resultados → gerar um relatório TXT (ou opcionalmente JSON, CSV, ou um DOCX/PDF/HTML destacado) → salvar a pesquisa → adicioná-la a um Conjunto de Pesquisa → agendá-la semanalmente.
 
 **O fluxo de trabalho principal está disponível em português brasileiro — página principal, botões de pesquisa, Opções Avançadas de Pesquisa e as mensagens de status mais comuns.** Janelas de ajuda, diálogos detalhados, mensagens do CLI e relatórios de saída permanecem em inglês. Veja abaixo a versão em inglês para detalhes completos.
 
