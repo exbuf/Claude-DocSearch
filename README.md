@@ -18,7 +18,7 @@
 
 **Tienes archivos. Necesitas encontrar algo en ellos.**
 
-peekdocs es un banco de trabajo de búsqueda local que hace exactamente eso en más de 100 formatos de archivo — Word, PDF, Excel, correo electrónico, documentos escaneados, archivos comprimidos, código fuente — sin subir nada a ningún lugar. GUI, CLI y API de Python. Funciona en Windows, macOS y Linux. Gratuito y de código abierto bajo la Licencia MIT.
+peekdocs es un banco de trabajo de búsqueda local que se adapta a tus necesidades. En su forma más simple es una caja de búsqueda: escribe una palabra y encuentra todos los archivos que la contienen en más de 100 formatos (Word, PDF, Excel, correo electrónico, documentos escaneados, archivos comprimidos, código fuente), sin subir nada a ningún lugar. Cuando necesitas más, usa coincidencia difusa, expresiones regulares y booleanas, filtros de proximidad y de rango, informes resaltados en DOCX/PDF/HTML y Conjuntos de Búsqueda reutilizables. Y cuando prefieres preguntar en vez de buscar, se conecta a un asistente de IA a través de la interfaz MCP opcional, que busca en tus documentos y resume los resultados. GUI, CLI y API de Python. Funciona en Windows, macOS y Linux. Gratuito y de código abierto bajo la Licencia MIT.
 
 Verdad fundamental determinista: la misma búsqueda da los mismos resultados, con cada coincidencia rastreable a un archivo y una línea para que puedas verificarla contra la fuente, todo ejecutándose localmente — sin nube, sin telemetría, sin llamadas de red. Combinado con un asistente de IA local, peekdocs es la capa de recuperación precisa y privada que ancla el modelo en tus archivos reales.
 
@@ -32,7 +32,7 @@ Verdad fundamental determinista: la misma búsqueda da los mismos resultados, co
 
 **Vous avez des fichiers. Vous devez y trouver quelque chose.**
 
-peekdocs est un atelier de recherche locale qui fait exactement cela à travers plus de 100 formats de fichiers — Word, PDF, Excel, e-mail, documents numérisés, archives, code source — sans rien téléverser nulle part. GUI, CLI et API Python. Fonctionne sous Windows, macOS et Linux. Gratuit et open source sous licence MIT.
+peekdocs est un atelier de recherche locale qui s'adapte à vos besoins. Au plus simple, c'est une barre de recherche : tapez un mot et trouvez tous les fichiers qui le contiennent parmi plus de 100 formats (Word, PDF, Excel, e-mail, documents numérisés, archives, code source), sans rien téléverser nulle part. Quand vous avez besoin de plus, utilisez la correspondance floue, les expressions régulières et booléennes, les filtres de proximité et de plage, les rapports surlignés en DOCX/PDF/HTML et des Suites de recherche réutilisables. Et quand vous préférez demander plutôt que chercher, il se connecte à un assistant IA via l'interface MCP optionnelle, qui recherche dans vos documents et résume les résultats. GUI, CLI et API Python. Fonctionne sous Windows, macOS et Linux. Gratuit et open source sous licence MIT.
 
 Une vérité de référence déterministe : la même recherche donne les mêmes résultats, chaque correspondance étant traçable jusqu'à un fichier et une ligne pour que vous puissiez la vérifier par rapport à la source, le tout s'exécutant localement — pas de cloud, pas de télémétrie, pas d'appels réseau. Associé à un assistant IA local, peekdocs est la couche de récupération précise et privée qui ancre le modèle dans vos fichiers réels.
 
@@ -46,7 +46,7 @@ Une vérité de référence déterministe : la même recherche donne les mêmes 
 
 **Sie haben Dateien. Sie müssen etwas darin finden.**
 
-peekdocs ist eine lokale Such-Werkbank, die genau das über 100+ Dateiformate hinweg leistet — Word, PDF, Excel, E-Mail, gescannte Dokumente, Archive, Quellcode — ohne irgendetwas irgendwohin hochzuladen. GUI, CLI und Python-API. Läuft unter Windows, macOS und Linux. Kostenlos und Open Source unter MIT-Lizenz.
+peekdocs ist eine lokale Such-Werkbank, die mit Ihren Anforderungen wächst. Ganz einfach ist es ein Suchfeld: Geben Sie ein Wort ein und finden Sie jede Datei, die es enthält, über 100+ Dateiformate hinweg (Word, PDF, Excel, E-Mail, gescannte Dokumente, Archive, Quellcode) — ohne irgendetwas irgendwohin hochzuladen. Wenn Sie mehr brauchen, nutzen Sie Fuzzy-Matching, reguläre und boolesche Ausdrücke, Nähe- und Bereichsfilter, hervorgehobene DOCX/PDF/HTML-Berichte und wiederverwendbare Such-Suiten. Und wenn Sie lieber fragen als suchen, verbindet es sich über die optionale MCP-Schnittstelle mit einem KI-Assistenten, der Ihre Dokumente durchsucht und die Ergebnisse zusammenfasst. GUI, CLI und Python-API. Läuft unter Windows, macOS und Linux. Kostenlos und Open Source unter MIT-Lizenz.
 
 Deterministische Grundwahrheit: Dieselbe Suche liefert dieselben Ergebnisse, jeder Treffer rückverfolgbar bis zu Datei und Zeile, sodass Sie ihn gegen die Quelle prüfen können — alles läuft lokal, keine Cloud, keine Telemetrie, keine Netzwerkaufrufe. In Kombination mit einem lokalen KI-Assistenten ist peekdocs die präzise, private Retrieval-Schicht, die das Modell in Ihren echten Dateien verankert.
 
@@ -60,7 +60,7 @@ Deterministische Grundwahrheit: Dieselbe Suche liefert dieselben Ergebnisse, jed
 
 **ファイルがあります。その中から何かを見つける必要があります。**
 
-peekdocs はまさにそれを行うローカルな検索ワークベンチで、Word、PDF、Excel、メール、スキャンドキュメント、アーカイブ、ソースコードなど 100 以上のファイル形式を、どこにもアップロードせずに検索します。GUI、CLI、Python API として利用できます。Windows、macOS、Linux で動作します。MIT ライセンスの下で無料・オープンソース。
+peekdocs はニーズに合わせて広がるローカルな検索ワークベンチです。最もシンプルな使い方は検索ボックス——単語を入力すれば、Word、PDF、Excel、メール、スキャンドキュメント、アーカイブ、ソースコードなど 100 以上のファイル形式から、それを含むすべてのファイルを、どこにもアップロードせずに見つけられます。さらに必要なときは、あいまい検索、正規表現・ブール式、近接・範囲フィルター、ハイライト付きの DOCX/PDF/HTML レポート、再利用できる検索スイートを使えます。そして検索よりも「たずねたい」ときは、オプションの MCP インターフェースを通じて AI アシスタントに接続でき、アシスタントがあなたのドキュメントを検索して結果を要約します。GUI、CLI、Python API として利用でき、Windows、macOS、Linux で動作します。MIT ライセンスの下で無料・オープンソース。
 
 検証できる、決定論的な結果。同じ検索は常に同じ結果を返し、各一致はファイルと行までたどれるので、元の情報源と照合できます。すべてローカルで動作し、クラウドなし、テレメトリーなし、ネットワーク通信なし。ローカルの AI アシスタントと組み合わせれば、peekdocs はモデルを実際のファイルに結びつける、正確でプライベートな検索（リトリーバル）層になります。
 
@@ -74,7 +74,7 @@ peekdocs はまさにそれを行うローカルな検索ワークベンチで�
 
 **您有文件。您需要在其中找到某些内容。**
 
-peekdocs 是一款本地搜索工作台，正是为此而生 — 可在 100 多种文件格式中搜索（Word、PDF、Excel、电子邮件、扫描文档、归档、源代码），不会将任何内容上传到任何地方。提供 GUI、CLI 和 Python API。可在 Windows、macOS 和 Linux 上运行。基于 MIT 许可证免费开源。
+peekdocs 是一款随需求而扩展的本地搜索工作台。最简单的用法就是一个搜索框：输入一个词，即可在 100 多种文件格式（Word、PDF、Excel、电子邮件、扫描文档、归档、源代码）中找到包含该词的所有文件，且不会将任何内容上传到任何地方。当需要更多功能时，可使用模糊匹配、正则表达式与布尔表达式、邻近与范围过滤、带高亮的 DOCX/PDF/HTML 报告，以及可复用的搜索套件。而当你更想“提问”而非“搜索”时，它可通过可选的 MCP 接口连接到 AI 助手，由助手搜索你的文档并总结结果。提供 GUI、CLI 和 Python API，可在 Windows、macOS 和 Linux 上运行。基于 MIT 许可证免费开源。
 
 可验证的确定性结果：相同的搜索始终返回相同的结果，每个匹配项都可追溯到具体的文件和行，便于您与原始来源核对。一切均在本地运行，无云端、无遥测、无网络调用。与本地 AI 助手搭配使用时，peekdocs 便成为将模型锚定于您真实文件的精确且私密的检索层。
 
@@ -88,7 +88,7 @@ peekdocs 是一款本地搜索工作台，正是为此而生 — 可在 100 多�
 
 **Você tem arquivos. Você precisa encontrar algo neles.**
 
-O peekdocs é uma bancada de trabalho de busca local que faz exatamente isso em mais de 100 tipos de arquivos — Word, PDF, Excel, e-mail, documentos digitalizados, arquivos compactados, código-fonte — sem enviar nada para lugar nenhum. GUI, CLI e API Python. Funciona em Windows, macOS e Linux. Software livre e de código aberto sob a Licença MIT.
+O peekdocs é uma bancada de trabalho de busca local que cresce conforme suas necessidades. No mais simples, é uma caixa de busca: digite uma palavra e encontre todos os arquivos que a contêm em mais de 100 formatos (Word, PDF, Excel, e-mail, documentos digitalizados, arquivos compactados, código-fonte), sem enviar nada para lugar nenhum. Quando você precisa de mais, use correspondência difusa, expressões regulares e booleanas, filtros de proximidade e de intervalo, relatórios destacados em DOCX/PDF/HTML e Conjuntos de Pesquisa reutilizáveis. E quando você prefere perguntar em vez de pesquisar, ele se conecta a um assistente de IA pela interface MCP opcional, que pesquisa seus documentos e resume os resultados. GUI, CLI e API Python. Funciona em Windows, macOS e Linux. Software livre e de código aberto sob a Licença MIT.
 
 Uma verdade de referência determinística: a mesma pesquisa produz os mesmos resultados, com cada correspondência rastreável até um arquivo e uma linha para que você possa verificá-la em relação à fonte, tudo executado localmente — sem nuvem, sem telemetria, sem chamadas de rede. Combinado com um assistente de IA local, o peekdocs é a camada de recuperação precisa e privada que ancora o modelo em seus arquivos reais.
 
