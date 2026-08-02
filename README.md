@@ -124,11 +124,7 @@ Search a folder of mixed-format documents → inspect matches in the Results Pre
 
 **Beyond simple search**
 
-peekdocs also includes:
-
-- Search Suites for recurring search workflows.
-- A regex pattern workbench for running named collections of patterns across any folder.
-- One consistent search engine shared by the GUI, CLI, Python API, and AI integrations.
+peekdocs also includes a regex pattern workbench for running named collections of patterns across any folder — all driven by one consistent search engine shared by the GUI, CLI, Python API, and AI integrations.
 
 <!--
   TO UPDATE THIS DEMO GIF:
