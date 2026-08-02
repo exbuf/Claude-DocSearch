@@ -104,15 +104,31 @@ Uma verdade de referência determinística: a mesma pesquisa produz os mesmos re
 
 ### You have files. You need to find something in them.
 
-peekdocs is a local document search workbench that grows with your needs. At its simplest, it's a search box—type a word and find every matching file across more than 100 formats, including Word, PDF, Excel, email, scanned documents, archives, and source code, all in a single pass, with nothing uploaded anywhere. When your work demands more, use fuzzy matching for typos, regex and Boolean expressions for precise patterns, proximity and range filters, yellow-highlighted DOCX/PDF/HTML reports, and reusable Search Suites you can save and schedule. And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface—ask a question in plain language, and the assistant searches your documents and summarizes what it finds. Every answer remains traceable to the original file and line, and with a local model, nothing ever leaves your machine. One workbench—from quick word lookups to AI-assisted document analysis—deterministic, private, and fully local.
+peekdocs is a local document search workbench that scales with your needs. At its simplest, it's a search box—type a word and find every matching file across more than 100 formats, including Word, PDF, Excel, email, scanned documents, archives, and source code, all in a single pass, with nothing uploaded anywhere.
 
-Everything runs locally — no cloud, no telemetry, no network calls. Available as a GUI, CLI, and Python API, on Windows, macOS, and Linux. Free and open-source under the MIT License.
+When your work demands more, use fuzzy matching for typos, regex and Boolean expressions for precise patterns, proximity and range filters, yellow-highlighted DOCX/PDF/HTML reports, and reusable Search Suites you can save and schedule.
 
-**Why it matters:** exact, *checkable* results matter more as AI puts more answers in front of you. Every hit carries an optional SHA-256 fingerprint so you can verify it against the source — and because everything stays on your machine, peekdocs works on corpora and computers that never touch the internet, well suited for research, QA, automation, and grounding a local AI model in your actual files.
+And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. Every answer remains traceable to the original file and line, and with a local model, nothing ever leaves your machine.
 
-**Typical workflow:** Search a folder of mixed-format documents → inspect matches in the Results Preview → generate a TXT report — plus optional JSON, CSV, or yellow-highlighted DOCX, PDF, or HTML → save the search → add it to a Search Suite → schedule it weekly.
+One workbench—from quick word lookups to AI-assisted document analysis—deterministic, private, and fully local.
 
-Beyond ad hoc searches, peekdocs includes saved Search Suites for recurring workflows, a regex pattern workbench for running named collections of patterns across any folder, and a consistent search engine shared by the GUI, CLI, Python API, and AI integrations.
+Everything runs locally—no cloud, no telemetry, no network calls. Available as a GUI, CLI, and Python API on Windows, macOS, and Linux. Free and open source under the MIT License.
+
+**Why it matters**
+
+As AI puts more answers in front of us, exact, verifiable results matter even more. Every hit can include an optional SHA-256 fingerprint so you can verify it against the source. Because everything stays on your machine, peekdocs is equally at home on offline systems, sensitive document collections, research archives, QA workflows, automation pipelines, and as the evidence engine behind a local AI assistant.
+
+**Typical workflow**
+
+Search a folder of mixed-format documents → inspect matches in the Results Preview → generate a TXT report (or optional JSON, CSV, or yellow-highlighted DOCX, PDF, or HTML) → save the search → add it to a Search Suite → schedule it to run automatically.
+
+**Beyond simple search**
+
+peekdocs also includes:
+
+- Search Suites for recurring search workflows.
+- A regex pattern workbench for running named collections of patterns across any folder.
+- One consistent search engine shared by the GUI, CLI, Python API, and AI integrations.
 
 <!--
   TO UPDATE THIS DEMO GIF:
