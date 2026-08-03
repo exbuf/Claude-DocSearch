@@ -151,11 +151,11 @@ peekdocs also includes a regex pattern workbench for running named collections o
 &nbsp;
 ## Contents
 
+- [Feature Highlights](#feature-highlights)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Who Is peekdocs For?](#who-is-peekdocs-for)
 - [Watch peekdocs in action](#watch-peekdocs-in-action)
-- [Feature Highlights](#feature-highlights)
 - [How these compose](#how-these-compose)
 - [CLI at a Glance](#cli-at-a-glance)
 - [Features](#features)
