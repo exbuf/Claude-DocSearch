@@ -126,6 +126,9 @@ Search a folder of mixed-format documents → inspect matches in the Results Pre
 
 peekdocs also includes a regex pattern workbench for running named collections of patterns across any folder — all driven by one consistent search engine shared by the GUI, CLI, Python API, and AI integrations.
 
+<p align="center">Free&nbsp;·&nbsp;Open-Source (MIT License)&nbsp;·&nbsp;No Cloud&nbsp;·&nbsp;Private&nbsp;·&nbsp;Easy to Use</p>
+<p align="center">Windows&nbsp;·&nbsp;macOS&nbsp;·&nbsp;Linux&nbsp;&nbsp;|&nbsp;&nbsp;GUI&nbsp;·&nbsp;CLI&nbsp;·&nbsp;Python API</p>
+
 <!--
   TO UPDATE THIS DEMO GIF:
   1. Record a new screen capture (MP4, no audio, ~45s).
