@@ -1483,7 +1483,7 @@ peekdocs ships an optional [Model Context Protocol](https://modelcontextprotocol
 
 The [beginner's guide](LOCAL_AI_SETUP.md) walks through all of this from scratch, with no prior experience assumed; the rest of this section is the reference.
 
-**Why do this?** You **ask in plain language** and get back an answer the assistant has synthesized from real matches and **cited to file and line** — peekdocs does the exact, deterministic finding, and the assistant reasons on top. You also keep your **choice of privacy**: a cloud assistant for convenience, or a fully local model so nothing leaves your machine. **It's an optional layer, though — and not for everyone.** peekdocs is fully capable on its own, so if you're comfortable building searches in the GUI or CLI, you may not need the AI at all; it adds a model to run and a bit of setup, and it earns its keep mainly when you'd rather *ask a question* than build a search. [Who benefits, and why](#who-benefits-and-why) expands on this below.
+**Why do this?** You **ask in plain language** and get back an answer the assistant has synthesized from real matches and **cited to file and line** — peekdocs does the exact, deterministic finding, and the assistant reasons on top. You also keep your **choice of privacy**: a cloud assistant for convenience, or a fully local model so document content never leaves your machine. **It's an optional layer, though — and not for everyone.** peekdocs is fully capable on its own, so if you're comfortable building searches in the GUI or CLI, you may not need the AI at all; it adds a model to run and a bit of setup, and it earns its keep mainly when you'd rather *ask a question* than build a search. [Who benefits, and why](#who-benefits-and-why) expands on this below.
 
 ### How the flow works
 
@@ -1857,7 +1857,7 @@ It takes three pieces:
 2. **An MCP host that can drive a local model.** Options in this space (a fast-moving ecosystem — check each project's current docs) include **LM Studio** (built-in MCP support; it can be both the model runner and the host in one app — the simplest route), **Open WebUI**, the **Cline** and **Continue** editor extensions, **Goose**, and terminal clients such as **ollmcp** ("MCP Client for Ollama") and **MCPHost**.
 3. **peekdocs-mcp**, registered with that host exactly as you would with any other — the server does not care which model is behind the host. Point it at `--root <folder>` as always.
 
-None of these require an internet connection once the model is downloaded, so the whole stack — model, MCP server, and your documents — stays offline. Note that peekdocs works with *any* MCP-capable host regardless of the model behind it; the choice between a cloud assistant (easiest to set up) and a local model (nothing leaves your machine) is yours.
+None of these require an internet connection once the model is downloaded, so the whole stack — model, MCP server, and your documents — stays offline. Note that peekdocs works with *any* MCP-capable host regardless of the model behind it; the choice between a cloud assistant (easiest to set up) and a local model (document content never leaves your machine) is yours.
 
 **Example — a fully-local stack without LM Studio (Ollama + ollmcp).** If you'd rather use [Ollama](https://ollama.com) with a terminal client instead of LM Studio's all-in-one app, the shape is the same — a model runner plus an MCP client:
 
@@ -1917,7 +1917,7 @@ The four steps (verified with Ollama + `qwen2.5:7b-instruct`; use plain `peekdoc
    ```
    *(For a quick interactive try, `echo "$PROMPT" | ollama run qwen2.5:7b-instruct` also works — but `ollama run` is built for a terminal and leaks cursor codes into piped output, so use the API in scripts.)*
 
-**Why this shape.** peekdocs narrows a 10,000-file corpus to the handful that actually match — exactly and deterministically — so the model reasons over a small, grounded set *with file + line citations* instead of the whole pile, and nothing leaves your machine. In testing, the model correctly answered from the matched lines *and* said when a detail "is not mentioned in the provided search results" rather than inventing one. Compared with MCP: **MCP is conversational** (ask mid-chat, the assistant searches for you); **this pipeline is scripted** (narrow → summarize → report, on a schedule). Same deterministic engine underneath; you choose who drives it.
+**Why this shape.** peekdocs narrows a 10,000-file corpus to the handful that actually match — exactly and deterministically — so the model reasons over a small, grounded set *with file + line citations* instead of the whole pile, and no document content leaves your machine. In testing, the model correctly answered from the matched lines *and* said when a detail "is not mentioned in the provided search results" rather than inventing one. Compared with MCP: **MCP is conversational** (ask mid-chat, the assistant searches for you); **this pipeline is scripted** (narrow → summarize → report, on a schedule). Same deterministic engine underneath; you choose who drives it.
 
 ## Automation and IT Use
 

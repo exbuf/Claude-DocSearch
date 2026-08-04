@@ -108,7 +108,7 @@ peekdocs is a local document search workbench that scales with your needs. At it
 
 When your work demands more, use fuzzy matching for typos, regex and Boolean expressions for precise patterns, proximity and range filters, yellow-highlighted DOCX/PDF/HTML reports, and reusable Search Suites you can save and schedule.
 
-And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. Every answer remains traceable to the original file and line, and with a local model, document content never leaves your machine.
+And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. The supporting search results remain traceable to the original file and line, and with a local model, your document content never leaves your machine.
 
 One workbench—from quick word lookups to AI-assisted document analysis—all driven by a search engine that is deterministic, private, and unconditionally local.
 

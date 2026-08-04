@@ -30,12 +30,12 @@ You'll connect three things:
 2. the AI model itself (a big file you download once), and
 3. **peekdocs**, connected to that program so the assistant can search your files.
 
-When it's done, the model, peekdocs, and your documents all live on your machine. Nothing leaves
+When it's done, the model, peekdocs, and your documents all live on your machine. Your document content never leaves
 it.
 
 ## How it works (the flow)
 
-Once everything's connected, here's what happens when you ask a question — and why nothing leaves
+Once everything's connected, here's what happens when you ask a question — and why document content never leaves
 your machine:
 
 ```
