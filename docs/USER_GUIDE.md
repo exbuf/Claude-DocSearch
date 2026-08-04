@@ -1572,6 +1572,19 @@ The exchange only ever goes one direction: the **assistant calls peekdocs**, pee
 
 **A note on "sampling."** The MCP protocol does include one feature that runs the other direction, and it is worth understanding why peekdocs leaves it out. Normally the assistant calls a server's tools; *sampling* inverts that — it lets a **server ask the host to run a model completion on its behalf** (to summarize or classify some text, for example), borrowing the host's model without needing its own API key. The host is expected to keep a human in the loop: show you the request, let you approve or deny it, and run it on a model it controls (the server never sees the model or its credentials directly). **peekdocs does not implement sampling.** If it did, peekdocs could drive the assistant — pushing file contents to the model on its own initiative, turning a passive "answers queries" tool into one that orchestrates the AI. Leaving it out is what preserves the simple contract above: peekdocs can be *asked* things, and can only *answer*. If that ever changed, it would be a new, opt-in capability documented prominently.
 
+### peekdocs in an AI pipeline
+
+Building a local **RAG** (retrieval-augmented generation) or agent stack? This is peekdocs's role in it: the **deterministic retrieval layer** — the part that *finds the source text* so the model reasons over real, cited material instead of guessing.
+
+Retrieval is usually done with embeddings and semantic similarity — powerful, but *approximate* and *non-reproducible* (the same query can surface different passages as models change). peekdocs is the other kind: **exact, regex, fuzzy, and Boolean** matching that is **deterministic** (same query → same hits, every time) and **traceable** (every hit carries a file path and line number, plus an optional SHA-256 fingerprint via `--hash`). That makes it a natural **grounding and provenance layer** — the part of the pipeline you can audit and cite.
+
+Wire it in either direction, fully local if you want:
+
+- **Assistant-driven (MCP)** — the model calls peekdocs as a tool and reasons over what comes back (the rest of this section).
+- **Scripted** — you drive it: `peekdocs --stdout … | jq | <local model>`, feeding only the matched files and lines to the model. See [Without MCP: a scripted retrieval → local-model pipeline](#without-mcp-a-scripted-retrieval--local-model-pipeline).
+
+Either way peekdocs does the **finding** — exact, reproducible, cited — and the model does the **reasoning**. And it's a *complement*, not a requirement: peekdocs is a complete document-search tool on its own; being the retrieval layer in an AI pipeline is simply one of the things it's good at.
+
 ### AI-agnostic and stateless by design
 
 Two more properties fall out of the architecture, and both are safe to rely on.
