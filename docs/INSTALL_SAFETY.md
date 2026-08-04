@@ -10,7 +10,7 @@ peekdocs is a free, open-source program for searching the text inside your files
 
 - **Local.** Everything happens on your machine. peekdocs has no website, no account, no cloud back-end, no servers — nothing for your documents to be uploaded *to*.
 - **Read-only.** peekdocs opens your files to read them. It does not write to them, rename them, move them, or delete them. The only files peekdocs creates are its own search-result reports (`.txt`, `.docx`, etc.) and an optional cached search index, both saved alongside your documents in the folder you chose. You control where those go.
-- **No network calls.** While peekdocs is running, it never opens an internet connection. No telemetry, no "check for updates," no license check, no crash reports, no analytics — nothing leaves your machine. You can verify this yourself; see [How to verify](#how-to-verify) below.
+- **No network calls of its own.** While peekdocs runs it opens no internet connection: no telemetry, no "check for updates," no license check, no crash reports, no analytics. The one exception is the GUI's optional **Help** / **View on GitHub** links, which open the project's documentation in *your* browser when you click them — a handoff to your browser, not a connection peekdocs makes. You can verify all of this yourself; see [How to verify](#how-to-verify) below.
 - **Open source under the MIT License.** Every line of code is on [GitHub](https://github.com/exbuf/peekdocs). Anyone — including independent security researchers — can read it, audit it, modify it, and republish it.
 
 ---
@@ -84,6 +84,8 @@ To confirm peekdocs makes no internet connections while it runs:
 Every release is built from the [public source code](https://github.com/exbuf/peekdocs) on GitHub. Look for `import requests`, `import urllib`, `import socket`, `import http`, `import aiohttp` — any of the standard Python ways to make a network call. You won't find them. The [Glossary](GLOSSARY.md) lists these libraries explicitly, partly so cautious users can grep for them.
 
 You don't have to be a Python programmer to do this. GitHub's search box on the [repository page](https://github.com/exbuf/peekdocs) lets you search the entire codebase. Try searching for the term `urllib` — you'll see it only in dependency-tree metadata, never in peekdocs's own code.
+
+**The one thing you *will* find is `webbrowser`.** It appears in two places in the GUI, so the **Help** and **View on GitHub** buttons can open the project's documentation. That's a handoff, not a network call: peekdocs asks your operating system to open a URL in *your* browser, which then makes the request — which is why the network-monitoring check above shows zero bytes from `peekdocs-gui` even if you click those buttons. peekdocs's bundled dependencies (the document parsers, OCR wrapper, GUI toolkit, and archive readers listed in `pyproject.toml`) make no network calls in normal operation either; the file parsing, matching, and reporting all happen on-device.
 
 ### 5. Run it in a sandbox first
 

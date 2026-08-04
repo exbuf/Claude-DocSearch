@@ -233,7 +233,7 @@ Almost always, the file IS in the matched set — it's just not visible in the s
 If after both checks the file genuinely isn't in the results, two real causes worth ruling out: (1) the file may be excluded from the search — open the **Excluded Files** link on the status line to see which files were skipped (oversized, unsupported format, password-protected, etc.); or (2) if you're using the index, the file may have been added after the last index refresh — run `peekdocs --index-refresh` (or **Indexes → Refresh** in the GUI) and search again.
 
 **Does peekdocs send my data anywhere?**
-No. peekdocs has no network calls, no telemetry, no tracking, no cloud. Everything runs locally. It works on air-gapped machines with no internet connection.
+No. peekdocs makes no network calls of its own — no telemetry, no tracking, no cloud — and it runs on air-gapped machines with no internet connection. (The GUI's optional **Help** links open the project's documentation in your browser when you click them; that request comes from your browser, not peekdocs.)
 
 **Does peekdocs need admin or root permissions?**
 No. It runs entirely with your normal user permissions. It can only read files you already have access to. It does not elevate privileges or require sudo/administrator.
