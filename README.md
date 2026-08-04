@@ -108,7 +108,7 @@ peekdocs is a local document search workbench that scales with your needs. At it
 
 When your work demands more, use fuzzy matching for typos, regex and Boolean expressions for precise patterns, proximity and range filters, yellow-highlighted DOCX/PDF/HTML reports, and reusable Search Suites you can save and schedule.
 
-And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. Every answer remains traceable to the original file and line, and with a local model, nothing ever leaves your machine.
+And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. Every answer remains traceable to the original file and line, and with a local model, document content never leaves your machine.
 
 One workbench—from quick word lookups to AI-assisted document analysis—all driven by a search engine that is deterministic, private, and unconditionally local.
 
@@ -473,7 +473,7 @@ The [annotated version](docs/USER_GUIDE.md#how-the-flow-works) is in the User Gu
 
 It is deliberately **read-only**: it exposes search, context, folder inventory, supported-types, and saved suite/collection runs, and **nothing that writes** — no delete, move, rename, or report-writing. And it is fenced: `--root` is **required**, so the assistant can only search inside the folders you name — never your whole drive.
 
-**A note on privacy.** peekdocs itself never sends anything over the internet. But the matching lines it finds are shown to the assistant as part of your conversation — so if that assistant runs in the cloud (like the Claude apps), those snippets are sent to it over the internet, just like anything else you type into a chat. If you would rather nothing ever leaves your computer, you can run a free AI model directly on your own machine and connect peekdocs to that instead; see the [fully-local setup](docs/USER_GUIDE.md#fully-local-and-private-pairing-with-a-downloadable-model) in the User Guide.
+**A note on privacy.** peekdocs itself never sends anything over the internet. But the matching lines it finds are shown to the assistant as part of your conversation — so if that assistant runs in the cloud (like the Claude apps), those snippets are sent to it over the internet, just like anything else you type into a chat. If you would rather document content never leaves your computer, you can run a free AI model directly on your own machine and connect peekdocs to that instead; see the [fully-local setup](docs/USER_GUIDE.md#fully-local-and-private-pairing-with-a-downloadable-model) in the User Guide.
 
 **The AI feature comes only with the pip/pipx install** (the `[mcp]` extra below) — it is *not* included in the [standalone binary download](#1-option-a-standalone-download-no-python-needed), and you don't need the GUI: `peekdocs-mcp` is a headless server your AI host launches for you.
 
