@@ -129,6 +129,14 @@ peekdocs also includes a regex pattern workbench for running named collections o
 <p align="center"><strong>Free&nbsp;·&nbsp;Open-Source (MIT License)&nbsp;·&nbsp;No Cloud&nbsp;·&nbsp;Private&nbsp;·&nbsp;Easy to Use</strong></p>
 <p align="center"><strong>Windows&nbsp;·&nbsp;macOS&nbsp;·&nbsp;Linux&nbsp;&nbsp;|&nbsp;&nbsp;GUI&nbsp;·&nbsp;CLI&nbsp;·&nbsp;Python API</strong></p>
 
+- **Search 100+ file formats in one pass** — Word, PDF, Excel, PowerPoint, email, archives, source code, and scanned documents (via OCR) — no converting, no uploading.
+- **Every search mode** — keyword, exact phrase, regex, fuzzy (typo-tolerant), Boolean, wildcard, proximity, and numeric/date ranges.
+- **Deterministic and verifiable** — the same query returns the same results every time, each hit pinned to a file and line (with an optional SHA-256 fingerprint) so you can check it against the source.
+- **Private by design** — runs entirely on your machine and makes no network calls of its own; works fully offline, even air-gapped.
+- **Highlighted, shareable reports** — a TXT report always, plus optional yellow-highlighted DOCX, PDF, HTML, CSV, or JSON.
+- **Reusable, automatable workflows** — save searches, group them into Search Suites, run named regex collections, watch folders for changes, and schedule scans.
+- **Fast, and AI-ready** — an optional index speeds up repeated searches and enables BM25 relevance ranking; an optional MCP interface lets a local or cloud AI assistant search through the same engine.
+
 <!--
   TO UPDATE THIS DEMO GIF:
   1. Record a new screen capture (MP4, no audio, ~45s).
