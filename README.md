@@ -135,7 +135,7 @@ peekdocs also includes a regex pattern workbench for running named collections o
 - **Private by design** — runs entirely on your machine and makes no network calls of its own; works fully offline, even air-gapped.
 - **Highlighted, shareable reports** — a TXT report always, plus optional yellow-highlighted DOCX, PDF, HTML, CSV, or JSON.
 - **Reusable, automatable workflows** — save searches, group them into Search Suites, run named regex collections, watch folders for changes, and schedule scans.
-- **Fast, and AI-ready** — an optional index speeds up repeated searches and enables BM25 relevance ranking; an optional MCP interface lets a local or cloud AI assistant search through the same engine. A step-by-step [Local AI Assistant setup guide](docs/LOCAL_AI_SETUP.md) walks you through installing LM Studio, choosing a free on-your-computer model, and pointing it at your documents — no prior experience assumed.
+- **Fast, and AI-ready** — an optional index speeds up repeated searches and enables BM25 relevance ranking; an optional MCP interface lets a local or cloud AI assistant search through the same engine. That means you can ask a plain-language question — *"which contract mentions the roof warranty?"* — and let the assistant do the searching and hand back a short answer cited to file and line, instead of building the search yourself. A step-by-step [Local AI Assistant setup guide](docs/LOCAL_AI_SETUP.md) walks you through installing LM Studio, choosing a free on-your-computer model, and pointing it at your documents — no prior experience assumed.
 
 <!--
   TO UPDATE THIS DEMO GIF:
