@@ -112,6 +112,7 @@ This is a long reference document. Skip directly to what you need:
 - **First time using the GUI?** Start with [GUI Mode (Graphical User Interface)](#gui-mode-graphical-user-interface).
 - **Want a hands-on walkthrough of advanced features?** See [Your First Advanced Search — Step by Step](#your-first-advanced-search--step-by-step).
 - **Integrating from Python?** Read [Python API Reference](#python-api-reference) and the full [API Reference](API.md).
+- **Want to ask an AI assistant about your documents?** See [MCP server: search from an AI assistant](#mcp-server-search-from-an-ai-assistant). New to running AI models locally? The step-by-step [Local AI Assistant setup guide](LOCAL_AI_SETUP.md) walks you through installing LM Studio, choosing a free on-your-computer model, and pointing it at your documents — no prior experience assumed.
 - **Setting up automation or scheduled scans?** Start with [Automation and IT Use](#automation-and-it-use), especially the [worked example](#a-worked-example-nightly-source-tree-watch).
 - **Running an audit / review engagement?** See [A worked example: audit engagement provenance](#a-worked-example-audit-engagement-provenance) for the SHA-256 baseline → citation → verify → diff workflow.
 - **Want real-time notifications when patterns appear in a shared folder?** See [A worked example: real-time pattern monitoring with `--watch`](#a-worked-example-real-time-pattern-monitoring-with---watch) — long-running `--watch` mode streaming NDJSON matches to a notification pipeline.
