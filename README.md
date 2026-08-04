@@ -135,7 +135,7 @@ peekdocs also includes a regex pattern workbench for running named collections o
 - **Unicode exact-character search** — matches the exact characters you type in any script, with no stemming or word segmentation, so English prose, Chinese text, code identifiers, and account numbers all search alike; the GUI itself is translated into 7 languages.
 - **Every search mode** — keyword, exact phrase, regex, fuzzy (typo-tolerant), Boolean, wildcard, proximity, and numeric/date ranges.
 - **Built-in folder analysis** — look beyond finding text: Duplicate Finder, File Inventory, Age Distribution, and Change Tracking profile a folder and surface what changed between runs.
-- **Deterministic and verifiable** — the same query returns the same results every time, each hit pinned to a file and line (with an optional SHA-256 fingerprint) so you can check it against the source.
+- **Deterministic and verifiable** — given the same files, settings, and peekdocs version, the same query returns the same results every time; each hit is pinned to a file and line (with an optional SHA-256 fingerprint) so you can check it against the source.
 - **Private by design** — runs entirely on your machine and makes no network calls, ever; works fully offline, even air-gapped.
 - **Highlighted, shareable reports** — a TXT report always, plus optional yellow-highlighted DOCX, PDF, HTML, CSV, or JSON.
 - **Reusable, automatable workflows** — save searches, group them into Search Suites, run named regex collections, watch folders for changes, and schedule scans.
@@ -535,7 +535,7 @@ peekdocs is built for anyone who has files and needs to find something in them �
 
 ### What makes peekdocs distinctive
 
-**peekdocs is deterministic document retrieval: the same query returns the same exact results every time, and every hit traces to a specific file and line.** Across 100+ formats, entirely on your machine, no cloud. That reproducibility is the whole point — and it pays off **with or without AI.**
+**peekdocs is deterministic document retrieval: given the same files, settings, and peekdocs version, the same query returns the same exact results every time, and every hit traces to a specific file and line.** Across 100+ formats, entirely on your machine, no cloud. That reproducibility is the whole point — and it pays off **with or without AI.**
 
 **On its own,** it's search you can *trust and repeat*: pattern sweeps, scheduled scans, regression checks, and re-runnable investigations — same inputs, same outputs, no black box.
 
