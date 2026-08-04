@@ -233,8 +233,9 @@ You rarely need to touch that file by hand. Pick whichever fits:
   ```bash
   peekdocs-mcp --print-config --root ~/Documents
   ```
-  Copy the JSON it prints into your host's config. Add `--recursive` / `--ocr` and repeat
-  `--root <folder>` for more folders as you like.
+  Copy the JSON it prints into your host's config. To customize: add `--recursive` (search
+  subfolders), add `--ocr` (read scanned documents), and give `--root <folder>` once for each
+  folder you want the assistant to be able to search.
 
 All of these fill in the **full path** to `peekdocs-mcp` for you, so you can't get the
 GUI-stripped-PATH gotcha (below) wrong.
