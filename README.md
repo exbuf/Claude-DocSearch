@@ -132,7 +132,9 @@ peekdocs also includes a regex pattern workbench for running named collections o
 <p align="center"><strong>Windows&nbsp;·&nbsp;macOS&nbsp;·&nbsp;Linux&nbsp;&nbsp;|&nbsp;&nbsp;GUI&nbsp;·&nbsp;CLI&nbsp;·&nbsp;Python API</strong></p>
 
 - **Search 100+ file formats in one pass** — Word, PDF, Excel, PowerPoint, email, archives, source code, and scanned documents (via OCR) — no converting, no uploading.
+- **Works in any language** — Unicode exact-character matching searches documents in any script — English prose, Chinese text, code identifiers, account numbers — and the GUI itself is translated into 7 languages.
 - **Every search mode** — keyword, exact phrase, regex, fuzzy (typo-tolerant), Boolean, wildcard, proximity, and numeric/date ranges.
+- **Built-in folder analysis** — look beyond finding text: Duplicate Finder, File Inventory, Age Distribution, and Change Tracking profile a folder and surface what changed between runs.
 - **Deterministic and verifiable** — the same query returns the same results every time, each hit pinned to a file and line (with an optional SHA-256 fingerprint) so you can check it against the source.
 - **Private by design** — runs entirely on your machine and makes no network calls of its own; works fully offline, even air-gapped.
 - **Highlighted, shareable reports** — a TXT report always, plus optional yellow-highlighted DOCX, PDF, HTML, CSV, or JSON.
