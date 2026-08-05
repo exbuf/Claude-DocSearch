@@ -1645,6 +1645,8 @@ peekdocs-mcp --root ~/Documents
 
 If you use **Claude Code** (Anthropic's terminal CLI), it is already an MCP host — so you can try peekdocs in a couple of minutes with no separate model or app to install. *(No Claude Code? Install it first, then come back.)*
 
+> **This is the cloud path — it breaks peekdocs's fully-local privacy posture.** Claude Code (like ChatGPT, Claude Desktop, or any cloud assistant) runs the AI model on the vendor's servers, so the file snippets peekdocs returns are sent off your machine for the model to read. peekdocs itself still makes no network calls — but your **document content leaves your computer** the moment a cloud assistant reads it. That's fine for folders you don't consider sensitive, and it's the fastest way to try MCP; for anything sensitive, use the [fully-local setup](#fully-local-and-private-pairing-with-a-downloadable-model) instead, where nothing leaves your machine.
+
 1. **Install the server** (once):
 
    ```bash
@@ -1682,7 +1684,7 @@ If you use **Claude Code** (Anthropic's terminal CLI), it is already an MCP host
 - **Scope:** it searches your `--root` folder and its subfolders — *not* the directory you launched Claude Code from. Ask "what folder did you search?" and it will tell you.
 - **Point it elsewhere:** re-register with a different `--root` (run `claude mcp remove peekdocs` first if it says it already exists).
 - **Remove it:** `claude mcp remove peekdocs`.
-- **Privacy:** Claude Code runs the model in the cloud, so the snippets it reads leave your machine (see [Does it keep everything on your machine?](#does-it-keep-everything-on-your-machine)). To keep everything local, pair peekdocs with a downloadable model instead — see [Fully local and private](#fully-local-and-private-pairing-with-a-downloadable-model) below.
+- **Privacy:** as the note at the top of this section says, the cloud path sends your file snippets off your machine (details: [Does it keep everything on your machine?](#does-it-keep-everything-on-your-machine)). To keep everything local, pair peekdocs with a downloadable model instead — see [Fully local and private](#fully-local-and-private-pairing-with-a-downloadable-model) below.
 
 ### Registering with an MCP client
 
