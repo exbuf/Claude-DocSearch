@@ -1712,6 +1712,27 @@ These files are often in hidden folders; the [beginner guide](LOCAL_AI_SETUP.md#
 }
 ```
 
+### Changing which folders the assistant can search
+
+The `--root` in the config **is** the searchable scope — the assistant can only ever see inside the folders you name there (it's the safety fence). To point it at a different folder, change `--root` and then **restart the host**:
+
+- **LM Studio (easiest):** re-run the config-writer with the new folder, then fully quit and reopen LM Studio:
+  ```bash
+  peekdocs-mcp --write-lmstudio-config --root /new/absolute/path/to/folder
+  ```
+  (or `peekdocs-mcp --setup` and pick the folder in the dialog). Use an absolute path. A *reload* often isn't enough — LM Studio has to relaunch the server, so **quit and reopen it** for the new `--root` to take effect.
+- **By hand / any host:** open the host's `mcp.json` (paths above), change the `--root` value in the server's `args`, and restart the host.
+- **Claude Code:** `claude mcp remove peekdocs`, then re-add with the new `--root` (see [Quickstart](#quickstart-claude-code-the-fastest-way-to-try-it)).
+
+**Multiple folders — repeat `--root` once per folder.** The assistant can then search any of them:
+```json
+"args": ["--root", "/Users/you/Documents", "--root", "/Users/you/Projects/specs"]
+```
+
+**Searching just a subfolder needs no config change.** A broad `--root ~/Documents` already covers everything beneath it, so to narrow a search you just name the subfolder in plain language (*"search only my `contracts` subfolder…"*) — the assistant scopes that one call to it via the search tool's `directory` parameter. Edit `--root` only when you want to *add* a folder outside the current fence, or *remove* one.
+
+**Confirm the change took.** Ask the assistant *"what folder did you just search?"* — it reports the tool's `searched_directory`. If that's not your new folder, the host is still running the old server: restart it. And if it names a folder that doesn't exist or isn't your `--root` at all, the model didn't really search — it's confabulating; check the raw tool output, or run the CLI (`cd <folder> && peekdocs -r "…"`) as the deterministic check that never makes anything up.
+
 ### Tools
 
 | Tool | What it does |
