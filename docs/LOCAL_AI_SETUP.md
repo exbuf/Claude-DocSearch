@@ -220,16 +220,16 @@ discovers peekdocs' individual tools (`search_documents`, `inventory_folder`, an
 
 You rarely need to touch that file by hand. Pick whichever fits:
 
-- **One command (interactive):**
+- **One command (interactive).** In your terminal, run:
   ```bash
   peekdocs-mcp --setup
   ```
   A folder picker opens — choose the folder the assistant may search, and peekdocs writes LM
   Studio's config for you (backing up any existing one). Then **skip to Step 5.** *(No graphical
   display? name the folder instead: `peekdocs-mcp --write-lmstudio-config --root ~/Documents`.)*
-- **From the peekdocs GUI:** **Tools → "AI Assistant Setup (MCP)…"** — the same thing with a
+- **Or, from the peekdocs GUI:** **Tools → "AI Assistant Setup (MCP)…"** — the same thing with a
   folder picker, subfolders/OCR/index/backup toggles, and **Write / Copy / Save** buttons.
-- **Print and paste (works for *any* MCP host, not just LM Studio):**
+- **Or, print and paste (works for *any* MCP host, not just LM Studio):**
   ```bash
   peekdocs-mcp --print-config --root ~/Documents
   ```
