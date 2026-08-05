@@ -118,7 +118,7 @@ peekdocs runs entirely on your machine and makes no network calls, ever—no clo
 
 **Why it matters**
 
-peekdocs is a deterministic document workbench — the evidence engine an AI assistant can build on, not a wrapper around one. As AI puts more answers in front of us, exact, verifiable results matter even more. Every hit can include an optional SHA-256 fingerprint so you can verify it against the source. Because peekdocs stays on your machine, it is equally at home on offline systems, sensitive document collections, research archives, QA workflows, automation pipelines, and behind a local AI assistant.
+peekdocs is a deterministic document workbench — the evidence engine an AI assistant can build on, not a wrapper around one. As AI puts more answers in front of us, exact, verifiable results matter even more. Every matched file can carry an optional SHA-256 fingerprint so you can verify it against the source. Because peekdocs stays on your machine, it is equally at home on offline systems, sensitive document collections, research archives, QA workflows, automation pipelines, and behind a local AI assistant.
 
 **Typical workflow**
 
@@ -137,7 +137,7 @@ peekdocs also includes a regex pattern workbench for running named collections o
 - **Unicode exact-character search** — matches the exact characters you type in any script, with no stemming or word segmentation, so English prose, Chinese text, code identifiers, and account numbers all search alike; the GUI itself is translated into 7 languages.
 - **Every search mode** — keyword, exact phrase, regex, fuzzy (typo-tolerant), Boolean, wildcard, proximity, and numeric/date ranges.
 - **Built-in folder analysis** — look beyond finding text: Duplicate Finder, File Inventory, Age Distribution, and Change Tracking profile a folder and surface what changed between runs.
-- **Deterministic and verifiable** — given the same files, settings, and peekdocs version, the same query returns the same results every time; each hit is pinned to a file and line (with an optional SHA-256 fingerprint) so you can check it against the source.
+- **Deterministic and verifiable** — given the same files, settings, and peekdocs version, the same query returns the same results every time; each hit is pinned to a file and line, and each matched file can carry an optional SHA-256 fingerprint, so you can check results against the source.
 - **Private by design** — runs entirely on your machine and makes no network calls, ever; works fully offline, even air-gapped.
 - **Highlighted, shareable reports** — a TXT report always, plus optional yellow-highlighted DOCX, PDF, HTML, CSV, or JSON.
 - **Reusable, automatable workflows** — save searches, group them into Search Suites, run named regex collections, watch folders for changes, and schedule scans.
