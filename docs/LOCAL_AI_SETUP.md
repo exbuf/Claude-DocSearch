@@ -4,6 +4,10 @@
 warranty?"* — with an AI assistant that runs **entirely on your own computer**, so nothing you
 search or find is ever uploaded anywhere.
 
+It's also **free** — the runtime and the AI model are free downloads, and running them on your own
+machine costs nothing (no subscription, no per-question fees). peekdocs is free and open-source too,
+so the whole setup is $0.
+
 This guide assumes **no prior experience** with AI models, "runtimes," or the Model Context
 Protocol (MCP). If you've never done any of this, you're in the right place. Budget about
 **20–30 minutes**, most of which is a download finishing.
