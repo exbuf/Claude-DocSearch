@@ -1475,6 +1475,8 @@ Results ==> /Users/yourname/Documents
 
 peekdocs ships an optional [Model Context Protocol](https://modelcontextprotocol.io) server, `peekdocs-mcp`, that lets an MCP-capable AI assistant search your local documents. It is a thin adapter over the same `peekdocs.api` engine the CLI and GUI use — an assistant's search returns the same matches your own search would.
 
+> **It doesn't install automatically.** The MCP integration is opt-in: the server code ships inside peekdocs, but you must install its `mcp` dependency separately (the `[mcp]` extra), and it is **not** included in the standalone binary download. See [Installing and running](#installing-and-running) below for the exact command.
+
 **At a glance, here's what setup takes** (the fully-local route; a cloud assistant like Claude Code skips steps 2–3, since the model already runs in the cloud):
 
 1. **Install the `peekdocs-mcp` server** — peekdocs's optional `[mcp]` extra, and the one step **every** setup needs, cloud or local: it's the piece the assistant talks to (see [Installing and running](#installing-and-running)).
