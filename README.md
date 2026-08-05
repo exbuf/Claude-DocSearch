@@ -1,5 +1,7 @@
 <h1 align="center">👀 peekdocs</h1>
 
+<p align="center"><em>Exact, reproducible, local document search — the retrieval layer that grounds AI in your real files.</em></p>
+
 <p align="center">
   <a href="https://github.com/exbuf/peekdocs/releases/latest"><img src="https://img.shields.io/github/v/release/exbuf/peekdocs?color=blue" alt="Latest release"></a>&nbsp;&nbsp;
   <a href="https://github.com/exbuf/peekdocs/actions/workflows/test.yml"><img src="https://github.com/exbuf/peekdocs/actions/workflows/test.yml/badge.svg" alt="Tests"></a>&nbsp;&nbsp;
