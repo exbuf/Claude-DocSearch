@@ -6,7 +6,8 @@ search or find is ever uploaded anywhere.
 
 It's also **free** — the runtime and the AI model are free downloads, and running them on your own
 machine costs nothing (no subscription, no per-question fees). peekdocs is free and open-source too,
-so the whole setup is $0.
+so the whole setup is $0 — and because there are no per-token charges, that cost stays flat no
+matter how much you use it, so heavy or automated workloads never run up a metered bill.
 
 This guide assumes **no prior experience** with AI models, "runtimes," or the Model Context
 Protocol (MCP). If you've never done any of this, you're in the right place. Budget about
