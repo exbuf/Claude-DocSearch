@@ -14,8 +14,7 @@ Protocol (MCP). If you've never done any of this, you're in the right place. Bud
 **20–30 minutes**, most of which is a download finishing.
 
 > Just want the quick version, or don't mind using a cloud assistant? The
-> [Quickstart: Claude Code](USER_GUIDE.md#quickstart-claude-code-the-fastest-way-to-try-it) in
-> the User Guide gets you talking to peekdocs in a couple of minutes — but with a cloud assistant,
+> [Quickstart: Claude Code](CLAUDE_CODE_SETUP.md) gets you talking to peekdocs in a couple of minutes — but with a cloud assistant,
 > the snippets it reads leave your machine. This guide is the **fully-local, fully-private**
 > route.
 
@@ -492,7 +491,7 @@ reads the file at startup).
 
 If privacy of the file snippets isn't a concern for a given folder, a cloud assistant is easier to
 set up — no model to download. See the
-[Quickstart: Claude Code](USER_GUIDE.md#quickstart-claude-code-the-fastest-way-to-try-it). The
+[Quickstart: Claude Code](CLAUDE_CODE_SETUP.md). The
 peekdocs side is identical; only the model's location (and whether snippets leave your machine)
 differs. Full background is in the User Guide's
 [MCP server](USER_GUIDE.md#mcp-server-search-from-an-ai-assistant) section.

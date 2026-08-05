@@ -1643,48 +1643,7 @@ peekdocs-mcp --root ~/Documents
 
 ### Quickstart: Claude Code (the fastest way to try it)
 
-If you use **Claude Code** (Anthropic's terminal CLI), it is already an MCP host — so you can try peekdocs in a couple of minutes with no separate model or app to install. *(No Claude Code? Install it first, then come back.)*
-
-> **This is the cloud path — it breaks peekdocs's fully-local privacy posture.** Claude Code (like ChatGPT, Claude Desktop, or any cloud assistant) runs the AI model on the vendor's servers, so the file snippets peekdocs returns are sent off your machine for the model to read. peekdocs itself still makes no network calls — but your **document content leaves your computer** the moment a cloud assistant reads it. That's fine for folders you don't consider sensitive, and it's the fastest way to try MCP; for anything sensitive, use the [fully-local setup](#fully-local-and-private-pairing-with-a-downloadable-model) instead, where nothing leaves your machine.
-
-1. **Install the server** (once):
-
-   ```bash
-   pipx install "peekdocs[mcp] @ git+https://github.com/exbuf/peekdocs.git"
-   ```
-
-   *(Already have peekdocs? A plain `pipx install` is a no-op — see [Installing and running](#installing-and-running) for the `--force` reinstall that adds the `[mcp]` extra.)*
-
-2. **Register it, fenced to one folder:**
-
-   ```bash
-   claude mcp add peekdocs -- peekdocs-mcp --root ~/Documents
-   ```
-
-   Point `--root` at the folder you want the assistant to be able to search — it can see *only* inside that folder. You'll get `Added stdio MCP server peekdocs …`.
-
-   > **Don't run `peekdocs-mcp --root …` directly to "test" it.** It's a server, so it just sits there silently waiting for a client — that's normal, not a hang. Press Ctrl-C and let Claude Code start it for you.
-
-3. **Open a *new* Claude Code session** — exit and run `claude` again, or open a new terminal window (MCP tools load when a session starts). Then confirm it connected:
-
-   ```
-   /mcp
-   ```
-
-   You should see **peekdocs** listed as connected.
-
-4. **Just ask, in plain language:**
-
-   > "Use peekdocs to search my Documents for the word *contract* and tell me which files it's in."
-
-   Claude runs the search and answers with file names and line numbers.
-
-**Good to know**
-
-- **Scope:** it searches your `--root` folder and its subfolders — *not* the directory you launched Claude Code from. Ask "what folder did you search?" and it will tell you.
-- **Point it elsewhere:** re-register with a different `--root` (run `claude mcp remove peekdocs` first if it says it already exists).
-- **Remove it:** `claude mcp remove peekdocs`.
-- **Privacy:** as the note at the top of this section says, the cloud path sends your file snippets off your machine (details: [Does it keep everything on your machine?](#does-it-keep-everything-on-your-machine)). To keep everything local, pair peekdocs with a downloadable model instead — see [Fully local and private](#fully-local-and-private-pairing-with-a-downloadable-model) below.
+The Claude Code walkthrough now lives in its own page: **[Quickstart: Claude Code](CLAUDE_CODE_SETUP.md)** — install the server, register it fenced to a folder, and ask in plain language, in a couple of minutes. *(Reminder: Claude Code is the **cloud** path — the snippets it reads leave your machine; for the fully-local route see [Fully local and private](#fully-local-and-private-pairing-with-a-downloadable-model).)*
 
 ### Registering with an MCP client
 
@@ -1784,7 +1743,7 @@ The last two are worth noting: peekdocs returns only the raw matches, and the as
 
 Keep these to **needle** questions — for **census** questions (exact counts, exhaustive lists) the result cap means the assistant sees only a slice, so ask peekdocs directly. Full guidance: [What to ask — and what to send straight to peekdocs](#what-to-ask--and-what-to-send-straight-to-peekdocs).
 
-The full Claude Code walkthrough is the [Quickstart](#quickstart-claude-code-the-fastest-way-to-try-it) above.
+The full Claude Code walkthrough is the [Quickstart: Claude Code](CLAUDE_CODE_SETUP.md) guide.
 
 ### What a real session looks like
 

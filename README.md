@@ -498,7 +498,7 @@ Register it with any MCP client using stdio — the transport every client speak
 claude mcp add peekdocs -- peekdocs-mcp --root ~/Documents
 ```
 
-Then **start a new Claude Code session**, run `/mcp` to confirm `peekdocs` is connected, and ask in plain language (below). *Don't run `peekdocs-mcp` directly to test it — it's a stdio server, so it just waits silently; that's normal (Ctrl-C to stop), and the host starts it for you.* Full step-by-step: [User Guide → Quickstart: Claude Code](docs/USER_GUIDE.md#quickstart-claude-code-the-fastest-way-to-try-it).
+Then **start a new Claude Code session**, run `/mcp` to confirm `peekdocs` is connected, and ask in plain language (below). *Don't run `peekdocs-mcp` directly to test it — it's a stdio server, so it just waits silently; that's normal (Ctrl-C to stop), and the host starts it for you.* Full step-by-step: [Quickstart: Claude Code](docs/CLAUDE_CODE_SETUP.md).
 
 For **Claude Desktop** (and other hosts that use a config file):
 
