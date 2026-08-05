@@ -197,6 +197,8 @@ cd "/Users/YourName/My Documents"
 
 **Tip:** You can drag a folder from your file manager onto the terminal window — most terminals will paste the full path for you.
 
+**Scoping tip:** the folder you `cd` into *is* your search scope — peekdocs searches that folder, and with `-r` everything beneath it. Point it at a narrow folder for a fast, focused search; a broad parent (your home directory, or a whole source checkout) will scan everything inside it — slower, and cluttered with hits you didn't want. If you want to search a specific set of documents, gather them into their own folder and `cd` there. (Example: to search only a project's docs and skip its code, `cd project/docs` rather than searching from `project/`.)
+
 ### Step 3: Run your first search
 
 Type this and press Enter:
