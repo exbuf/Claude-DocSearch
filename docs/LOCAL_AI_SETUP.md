@@ -441,6 +441,39 @@ The small local model here wins on **privacy and cost** — so it's best matched
 questions about your own documents where you can glance at the matches to confirm*, not to
 exhaustive analytics across everything.
 
+**Already know which file you want? You may not need the search at all.** For summarizing a single
+file you already have in hand, LM Studio lets you **drag and drop the file straight into the chat**
+and ask it to summarize — no peekdocs or MCP involved. peekdocs earns its keep when you need to
+**find** the right file(s) across many, or want every answer pinned to a file and line. (File
+drag-and-drop is an LM Studio feature with its own size limits — a large file may not fit the
+model's context window; see LM Studio's docs.)
+
+## Tuning the model for better answers
+
+If the assistant confabulates, skips the search, or summarizes poorly, a few model settings help
+far more than re-prompting. *Where* each lives varies by app (see LM Studio's docs), but the
+concepts are universal:
+
+- **Set a system prompt — the single biggest lever.** A persistent instruction applied to every
+  message, e.g.: *"Always use the peekdocs search tool before answering. Never answer from memory.
+  Search the whole root folder, not a subfolder. Cite file and line."* This curbs the
+  invented-folder and answer-from-memory behavior far better than repeating yourself each turn.
+- **Lower the temperature (~0.2).** Low temperature makes the model more factual and much better at
+  calling tools; high temperature is where hallucinated paths and made-up commands come from. Keep
+  it low for document Q&A.
+- **A bigger or less-compressed model reasons better.** A 7B model *finds* fine but summarizes
+  weakly and skips tools more often. Stepping up to a 14B (or Llama 3.1 8B), or a less-aggressive
+  **quantization** (Q6/Q8 instead of Q4), improves answer quality — at the cost of more memory and
+  slower replies. Model size and quantization are your quality-vs-RAM dial.
+- **peekdocs is not the runtime's built-in document RAG.** LM Studio (and others) can attach files
+  and do their own **embedding-based** retrieval — approximate, semantic, and without citations.
+  peekdocs is *exact, deterministic* search with file + line provenance. Reach for peekdocs when you
+  need precision and traceability; use the built-in RAG for loose "what's this generally about"
+  recall.
+
+Two more you've already met: give the model **enough context** ([Step 5](#step-5--turn-it-on) — a
+bigger window fits more matched text) and **start a fresh chat** if a long conversation overflows.
+
 ## Changing which folders it can search
 
 The searchable folders are set by `--root` in `mcp.json` (Step 4), *not* in the chat. You rarely
