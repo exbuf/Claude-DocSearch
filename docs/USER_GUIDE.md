@@ -1845,6 +1845,8 @@ It takes three pieces:
 
 None of these require an internet connection once the model is downloaded, so the whole stack — model, MCP server, and your documents — stays offline. Note that peekdocs works with *any* MCP-capable host regardless of the model behind it; the choice between a cloud assistant (easiest to set up) and a local model (nothing leaves your machine) is yours.
 
+**LM Studio or Ollama — when to pick which.** For the conversational MCP flow, **LM Studio** is the simplest: it's the model runner *and* the MCP host in one GUI app, so there's a single thing to install. **Ollama** is *only* the runner, so it needs a separate MCP client (the example below) — but that extra piece pays off for **developers who already run Ollama**, for **headless, server, or automated** setups (Ollama is an always-on background service with a scriptable HTTP API, not a desktop app you keep open), and for anyone who prefers a fully **open-source** stack. Ollama is also the natural local-model endpoint for the [scripted `--stdout` → local-model pipeline](#without-mcp-a-scripted-retrieval--local-model-pipeline), which needs no MCP at all. Rule of thumb: **point-and-click, one app → LM Studio; terminal-native, headless, scripted, or already-on-Ollama → Ollama.** peekdocs is identical underneath either way.
+
 **Example — a fully-local stack without LM Studio (Ollama + ollmcp).** If you'd rather use [Ollama](https://ollama.com) with a terminal client instead of LM Studio's all-in-one app, the shape is the same — a model runner plus an MCP client:
 
 1. **Pull a tool-calling model** in Ollama (it runs its own server in the background):
