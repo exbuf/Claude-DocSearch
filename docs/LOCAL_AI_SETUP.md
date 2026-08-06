@@ -18,6 +18,13 @@ Protocol (MCP). If you've never done any of this, you're in the right place. Bud
 > the snippets it reads leave your machine. This guide is the **fully-local, fully-private**
 > route.
 
+> **Heads-up: LM Studio is a separate app, and it changes.** This guide covers the **peekdocs**
+> side thoroughly, but LM Studio's own interface — installing it, loading a model, its **Load
+> settings** (like context length), and enabling MCP tools — shifts between versions and may not
+> match the steps here exactly. Teaching LM Studio's UI is beyond peekdocs's scope, so for those
+> steps follow **[LM Studio's own documentation](https://lmstudio.ai/docs)** or a recent video
+> tutorial. (The same applies to any other runtime, such as Ollama.)
+
 ---
 
 ## The idea, in plain English
