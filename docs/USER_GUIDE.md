@@ -1911,7 +1911,7 @@ The four steps (verified with Ollama + `qwen2.5:7b-instruct`; use plain `peekdoc
    peekdocs --stdout renew | jq -r '.matches[] | "- \(.filename) (line \(.line_number)): \(.matched_text)"'
    ```
 3. **Build a grounded prompt** — tell the model to answer *only* from those matches and cite the file (or grab a ready-made one from [Prompt templates](#prompt-templates-fill-in-the-blank)).
-4. **Hand it to a local model.** For scripting, the Ollama **API** returns clean text:
+4. **Hand it to a local model.** Steps 1–3 fold into the single block below. **Copy the whole block and paste it into your terminal in one go** (not one line at a time), then press Enter — it stores your question and the matches in shell variables, posts them to Ollama's API, and prints the answer:
    ```bash
    Q="Which agreements auto-renew, and how much notice to cancel? Cite the file."
    CTX=$(peekdocs --stdout renew | jq -r '.matches[] | "- \(.filename) (line \(.line_number)): \(.matched_text)"')
@@ -1925,6 +1925,18 @@ The four steps (verified with Ollama + `qwen2.5:7b-instruct`; use plain `peekdoc
      | curl -s http://localhost:11434/api/generate -d @- | jq -r '.response'
    ```
    *(For a quick interactive try, `echo "$PROMPT" | ollama run qwen2.5:7b-instruct` also works — but `ollama run` is built for a terminal and leaks cursor codes into piped output, so use the API in scripts.)*
+
+> **How to actually enter this — two gotchas, both of which have bitten real users:**
+>
+> **(1) Paste the whole block *at once*, not line by line.** That `PROMPT="…"` spans several lines; if you type it and leave off the closing `"`, your shell stops and shows a `dquote>` (or `>`) prompt, waiting for you to finish the quote — it looks like a hang or a repeating message. Press **Ctrl-C** to bail out and start over.
+>
+> **(2) Reusing it? Save it as a file instead of pasting.** Put the block in a file named `ask.sh`, change the `Q="…"` line to your question, then run:
+>
+> ```bash
+> bash ask.sh
+> ```
+>
+> A script file sidesteps *every* paste-and-quoting pitfall, and you can rerun it or tweak the question anytime. This is the recommended way for anything beyond a one-off — copy-pasting a multi-line command into a live terminal is the fragile part, not peekdocs.
 
 **Saving the answer.** The command above prints to the terminal — capture it by appending a redirect (`> answer.txt`) or `tee` (which prints *and* saves):
 
