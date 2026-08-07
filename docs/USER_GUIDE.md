@@ -1905,6 +1905,14 @@ The four steps (verified with Ollama + `qwen2.5:7b-instruct`; use plain `peekdoc
    ```
    *(For a quick interactive try, `echo "$PROMPT" | ollama run qwen2.5:7b-instruct` also works — but `ollama run` is built for a terminal and leaks cursor codes into piped output, so use the API in scripts.)*
 
+**Saving the answer.** The command above prints to the terminal — capture it by appending a redirect (`> answer.txt`) or `tee` (which prints *and* saves):
+
+```bash
+… | curl -s http://localhost:11434/api/generate -d @- | jq -r '.response' | tee ~/peekdocs-answer.txt
+```
+
+For a **re-verifiable** record, save the answer *together with* the `file (line)` matches it was built from (the `$CTX` from step 2) in one file — a short wrapper script is the tidy way to do it. Because the saved file then holds both the model's prose *and* the exact lines it was given, you can open those citations later and confirm the model didn't drift. That's the provenance idea, on disk: the answer is only as trustworthy as the matches beside it.
+
 **Why this shape.** peekdocs narrows a 10,000-file corpus to the handful that actually match — exactly and deterministically — so the model reasons over a small, grounded set *with file + line citations* instead of the whole pile, and nothing leaves your machine. In testing, the model correctly answered from the matched lines *and* said when a detail "is not mentioned in the provided search results" rather than inventing one. Compared with MCP: **MCP is conversational** (ask mid-chat, the assistant searches for you); **this pipeline is scripted** (narrow → summarize → report, on a schedule). Same deterministic engine underneath; you choose who drives it.
 
 ## Automation and IT Use
