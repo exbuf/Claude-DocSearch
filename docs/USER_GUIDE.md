@@ -1535,6 +1535,18 @@ Two habits keep the answers trustworthy:
 
 The beginner-friendly version of this, with a side-by-side table, is in the [Local AI Assistant setup guide](LOCAL_AI_SETUP.md#getting-the-most-out-of-it--what-to-ask).
 
+#### Prompt templates (fill in the blank)
+
+The only thing *you* supply is the question — keep the grounding wrapper (**use only the results, cite the file and line, say so if the answer isn't there**), which is what stops a local model from wandering. Paste one of these at your assistant's prompt (LM Studio / `ollmcp`), or drop it into the scripted pipeline's `QUESTION`, replacing the `‹…›`:
+
+- **Summarize a topic** — *"Using only these search results, summarize what my documents say about ‹topic›. Cite the file and line for each point; if the results don't cover it, say so."*
+- **Answer a specific question** — *"Using only these results, answer: ‹your question›. Quote the exact line and cite its file; if the answer isn't there, say that plainly."*
+- **Extract a value** — *"From these results, give me ‹the value — e.g. the notice period / the amount / the date› with the exact figure and the file + line it came from. If it's not present, say so."*
+- **Compare two documents** — *"Based only on these results, compare what ‹file A› and ‹file B› say about ‹topic› — where they agree, differ, or are silent — with file + line citations."*
+- **List key findings** — *"List the key points about ‹topic› from these results as bullets, each with a file + line citation. Don't add anything that isn't in the results."*
+
+All five are **needle-shaped** — answerable from a few strong matches, the assistant's sweet spot. For **census** questions (exact counts, exhaustive lists), skip the model and ask peekdocs directly (its counts and CSV/JSON exports are complete and exact).
+
 ### Who benefits, and why
 
 In more detail, here's what it buys you:
@@ -1898,7 +1910,7 @@ The four steps (verified with Ollama + `qwen2.5:7b-instruct`; use plain `peekdoc
    ```bash
    peekdocs --stdout renew | jq -r '.matches[] | "- \(.filename) (line \(.line_number)): \(.matched_text)"'
    ```
-3. **Build a grounded prompt** — tell the model to answer *only* from those matches and cite the file.
+3. **Build a grounded prompt** — tell the model to answer *only* from those matches and cite the file (or grab a ready-made one from [Prompt templates](#prompt-templates-fill-in-the-blank)).
 4. **Hand it to a local model.** For scripting, the Ollama **API** returns clean text:
    ```bash
    Q="Which agreements auto-renew, and how much notice to cancel? Cite the file."
