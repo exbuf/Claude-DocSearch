@@ -25,8 +25,10 @@ Protocol (MCP). If you've never done any of this, you're in the right place. Bud
 > steps follow **[LM Studio's own documentation](https://lmstudio.ai/docs)** or a recent video
 > tutorial. (The same applies to any other runtime, such as Ollama.)
 
-> **On the command line, or already using Ollama?** This guide uses **LM Studio** because it's the
-> simplest all-in-one app. For the terminal-native equivalent — **Ollama + `ollmcp`**, plus the
+> **LM Studio here is a worked example, not a requirement.** peekdocs works with *any* MCP-capable
+> host driving a tool-calling model — this guide uses **LM Studio** because it's the simplest
+> all-in-one app, but nothing here is LM-Studio-specific on peekdocs's side. **On the command line,
+> or already using Ollama?** For the terminal-native equivalent — **Ollama + `ollmcp`**, plus the
 > scriptable `--stdout` → local-model pipeline — see [User Guide → Ollama setup](USER_GUIDE.md#ollama-setup).
 
 ---

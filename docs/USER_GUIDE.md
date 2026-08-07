@@ -1849,6 +1849,8 @@ None of these require an internet connection once the model is downloaded, so th
 
 ### Ollama setup
 
+> **Ollama here is a worked example, not a requirement.** peekdocs works with *any* MCP-capable host driving a tool-calling model — LM Studio and Ollama are simply the two routes this guide walks through. Swap in any equivalent; the shape doesn't change (for the runtime landscape and the scriptable variant, see *"Any local runtime works, not just Ollama"* under the [scripted pipeline](#without-mcp-a-scripted-retrieval--local-model-pipeline) below).
+
 Prefer [Ollama](https://ollama.com) with a terminal client instead of LM Studio's all-in-one app? This is the **fully-local, terminal-native** route developers tend to like — Ollama runs as an always-on background service with a scriptable HTTP API. (Want point-and-click instead? The [LM Studio beginner's guide](LOCAL_AI_SETUP.md) is the parallel.) The shape is the same as LM Studio — a model runner plus an MCP client:
 
 1. **Pull a tool-calling model** in Ollama (it runs its own server in the background):
