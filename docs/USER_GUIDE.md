@@ -1911,37 +1911,42 @@ The four steps (verified with Ollama + `qwen2.5:7b-instruct`; use plain `peekdoc
    peekdocs --stdout renew | jq -r '.matches[] | "- \(.filename) (line \(.line_number)): \(.matched_text)"'
    ```
 3. **Build a grounded prompt** — tell the model to answer *only* from those matches and cite the file (or grab a ready-made one from [Prompt templates](#prompt-templates-fill-in-the-blank)).
-4. **Hand it to a local model.** Steps 1–3 fold into the single block below. **Copy the whole block and paste it into your terminal in one go** (not one line at a time), then press Enter — it stores your question and the matches in shell variables, posts them to Ollama's API, and prints the answer:
-   ```bash
-   Q="Which agreements auto-renew, and how much notice to cancel? Cite the file."
-   CTX=$(peekdocs --stdout renew | jq -r '.matches[] | "- \(.filename) (line \(.line_number)): \(.matched_text)"')
-   PROMPT="Answer using ONLY these peekdocs results; cite the filename; if they don't say, say so.
-
-   Question: $Q
-
-   Results:
-   $CTX"
-   jq -n --arg m qwen2.5:7b-instruct --arg p "$PROMPT" '{model:$m, prompt:$p, stream:false}' \
-     | curl -s http://localhost:11434/api/generate -d @- | jq -r '.response'
-   ```
-   *(For a quick interactive try, `echo "$PROMPT" | ollama run qwen2.5:7b-instruct` also works — but `ollama run` is built for a terminal and leaks cursor codes into piped output, so use the API in scripts.)*
-
-> **How to actually enter this — two gotchas, both of which have bitten real users:**
->
-> **(1) Paste the whole block *at once*, not line by line.** That `PROMPT="…"` spans several lines; if you type it and leave off the closing `"`, your shell stops and shows a `dquote>` (or `>`) prompt, waiting for you to finish the quote — it looks like a hang or a repeating message. Press **Ctrl-C** to bail out and start over.
->
-> **(2) Reusing it? Save it as a file instead of pasting.** Put the block in a file named `ask.sh`, change the `Q="…"` line to your question, then run:
->
-> ```bash
-> bash ask.sh
-> ```
->
-> A script file sidesteps *every* paste-and-quoting pitfall, and you can rerun it or tweak the question anytime. This is the recommended way for anything beyond a one-off — copy-pasting a multi-line command into a live terminal is the fragile part, not peekdocs.
-
-**Saving the answer.** The command above prints to the terminal — capture it by appending a redirect (`> answer.txt`) or `tee` (which prints *and* saves):
+4. **Put it in a script and run it — the reliable way.** Steps 1–3 combine into one script; **this script, not steps 1–2, is what you actually run.** Save it to a file called `ask.sh` (edit the four settings at the top for your own search), then run `bash ask.sh`:
 
 ```bash
-… | curl -s http://localhost:11434/api/generate -d @- | jq -r '.response' | tee ~/peekdocs-answer.txt
+#!/bin/bash
+FOLDER=~/Documents                    # the folder to search (recursively)
+QUERY="auto-renewal"                  # your search term — keep it NARROW (see the note below)
+QUESTION="Which agreements auto-renew, and how much notice to cancel? Cite the file."
+MODEL="qwen2.5:7b-instruct"           # a model you have pulled (check with: ollama list)
+
+cd "$FOLDER" || exit 1
+CTX=$(peekdocs --stdout -r "$QUERY" \
+      | jq -r '.matches[] | "- \(.filename) (line \(.line_number)): \(.matched_text)"')
+PROMPT="Answer using ONLY these peekdocs results; cite the filename and line; if they don't say, say so.
+
+Question: $QUESTION
+
+Results:
+$CTX"
+jq -n --arg m "$MODEL" --arg p "$PROMPT" '{model:$m, prompt:$p, stream:false}' \
+  | curl -s http://localhost:11434/api/generate -d @- | jq -r '.response'
+```
+
+Then run it:
+
+```bash
+bash ask.sh
+```
+
+**Why a script instead of copy-paste?** The block spans several lines (that multi-line `PROMPT="…"`), and pasting a multi-line command into a live terminal is fragile — a dropped closing `"` leaves the shell stuck at a `dquote>` (or `>`) prompt that looks like a hang or a repeating message (press **Ctrl-C** to bail). A file has none of that, and you can rerun it or change the question anytime. *(For a quick one-off, `echo "$PROMPT" | ollama run "$MODEL"` works too — but `ollama run` leaks terminal cursor codes into piped output, so the API is cleaner in a script.)*
+
+> **Keep `QUERY` narrow — every match goes to the model.** peekdocs feeds *all* the matched lines into the prompt, and a local model's context window is limited: a broad term like `renew` can return hundreds of matches, overflowing the window so the model silently sees only a fraction (whereas `auto-renewal` returns a handful that fit). Search a specific phrase, or point `FOLDER` at a subfolder, so the matches fit. If you genuinely need *all* of them, that is a **census** question — ask peekdocs directly instead.
+
+**Saving the answer.** The script prints its answer to the terminal — capture it by redirecting or `tee`-ing when you run it (`tee` prints *and* saves):
+
+```bash
+bash ask.sh | tee ~/peekdocs-answer.txt
 ```
 
 For a **re-verifiable** record, save the answer *together with* the `file (line)` matches it was built from (the `$CTX` from step 2) in one file — a short wrapper script is the tidy way to do it. Because the saved file then holds both the model's prose *and* the exact lines it was given, you can open those citations later and confirm the model didn't drift. That's the provenance idea, on disk: the answer is only as trustworthy as the matches beside it.
