@@ -110,7 +110,7 @@ peekdocs is a local document search workbench that scales with your needs. At it
 
 When your work demands more, use fuzzy matching for typos, regex and Boolean expressions for precise patterns, proximity and range filters, yellow-highlighted DOCX/PDF/HTML reports, and reusable Search Suites you can save and schedule.
 
-And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. The supporting search results remain traceable to the original file and line, and with a local model, your document content never leaves your machine.
+And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. The supporting search results remain traceable to the original file and line, and with a local model (run on your own machine via [Ollama](https://ollama.com) or [LM Studio](https://lmstudio.ai)), your document content never leaves your machine.
 
 One workbench—from quick word lookups to AI-assisted document analysis—all driven by a search engine that is deterministic, private, and unconditionally local.
 
@@ -802,7 +802,8 @@ All three share the same engine, flags, and 100+ file-type support. The matching
 | Document | Description |
 |----------|-------------|
 | [User Guide](docs/USER_GUIDE.md) | Complete reference — GUI, CLI flags, search modes, indexing, file reference |
-| [Local AI Assistant setup](docs/LOCAL_AI_SETUP.md) | Beginner's guide to running peekdocs with a private, on-your-computer AI assistant — no prior experience with models, runtimes, or MCP assumed |
+| [Local AI Assistant setup (LM Studio)](docs/LOCAL_AI_SETUP.md) | Beginner's guide to running peekdocs with a private, on-your-computer AI assistant via **LM Studio** (all-in-one app) — no prior experience with models, runtimes, or MCP assumed |
+| [Ollama setup](docs/USER_GUIDE.md#ollama-setup) | The terminal-native, fully-local route — **Ollama** + an MCP client (`ollmcp`), with usage examples; the developer parallel to the LM Studio guide, plus the scriptable `--stdout` → local-model pipeline |
 | [Walkthroughs](docs/WALKTHROUGHS.md) | Seven annotated screenshot tours — same search across three interfaces, Advanced Search Options, Regex Search, Search Suites, Diff Snapshots, Schedule Search, and `peekdocs --check` |
 | [Installation](docs/INSTALLATION.md) | Per-platform Python prerequisites, optional tools (Tesseract, UnRAR, libpff-python), CLI-on-Windows footnotes, and less-common install paths |
 | [API Reference](docs/API.md) | Python library API — `search()`, suite/collection runners, folder inventory, the optional `peekdocs-mcp` MCP server for AI assistants, and the `peekdocs.errors` exception hierarchy (`QueryError`, `RangeError`, `NameNotFoundError` — each inheriting from a stdlib base for back-compat). Public surface ships type hints verified in CI by mypy across the public API + core engine modules (14 files, listed in `pyproject.toml`). |

@@ -1847,7 +1847,9 @@ None of these require an internet connection once the model is downloaded, so th
 
 **LM Studio or Ollama — when to pick which.** For the conversational MCP flow, **LM Studio** is the simplest: it's the model runner *and* the MCP host in one GUI app, so there's a single thing to install. **Ollama** is *only* the runner, so it needs a separate MCP client (the example below) — but that extra piece pays off for **developers who already run Ollama**, for **headless, server, or automated** setups (Ollama is an always-on background service with a scriptable HTTP API, not a desktop app you keep open), and for anyone who prefers a fully **open-source** stack. Ollama is also the natural local-model endpoint for the [scripted `--stdout` → local-model pipeline](#without-mcp-a-scripted-retrieval--local-model-pipeline), which needs no MCP at all. Rule of thumb: **point-and-click, one app → LM Studio; terminal-native, headless, scripted, or already-on-Ollama → Ollama.** peekdocs is identical underneath either way.
 
-**Example — a fully-local stack without LM Studio (Ollama + ollmcp).** If you'd rather use [Ollama](https://ollama.com) with a terminal client instead of LM Studio's all-in-one app, the shape is the same — a model runner plus an MCP client:
+### Ollama setup
+
+Prefer [Ollama](https://ollama.com) with a terminal client instead of LM Studio's all-in-one app? This is the **fully-local, terminal-native** route developers tend to like — Ollama runs as an always-on background service with a scriptable HTTP API. (Want point-and-click instead? The [LM Studio beginner's guide](LOCAL_AI_SETUP.md) is the parallel.) The shape is the same as LM Studio — a model runner plus an MCP client:
 
 1. **Pull a tool-calling model** in Ollama (it runs its own server in the background):
    ```bash
@@ -1866,7 +1868,12 @@ None of these require an internet connection once the model is downloaded, so th
    ollmcp --servers-json peekdocs.json --model qwen2.5:7b-instruct
    ```
    *(Flags current as of ollmcp 0.33; if one has moved, `ollmcp --help` shows the current set — what stays constant is the `peekdocs.json` config and the `peekdocs-mcp --root <folder>` command inside it.)*
-5. **Ask in plain language** — *"search my Documents for the roof warranty and tell me which files it's in."* You'll see the model call peekdocs's `search_documents` tool, then answer — entirely offline, nothing leaving your machine.
+5. **Ask in plain language.** A few examples of what to type at the ollmcp prompt:
+   - *"Search my Documents for the roof warranty and tell me which files mention it."*
+   - *"Which contracts mention a renewal clause, and what's the notice period? Cite the files."*
+   - *"Summarize what my notes say about the migration plan."*
+
+   You'll see the model call peekdocs's `search_documents` tool, then answer from the matches — entirely offline, nothing leaving your machine. Keep questions **needle-shaped** (answerable from a few strong matches); for **census** questions (exact counts, exhaustive lists) go straight to peekdocs. See [What to ask](#what-to-ask--and-what-to-send-straight-to-peekdocs) for the full guidance.
 
 Any other local host (Open WebUI, Cline, Continue, Goose, MCPHost) follows the same three moves: run a tool-calling model, and hand the host that same `peekdocs-mcp --root` server entry.
 
@@ -1912,6 +1919,8 @@ The four steps (verified with Ollama + `qwen2.5:7b-instruct`; use plain `peekdoc
 ```
 
 For a **re-verifiable** record, save the answer *together with* the `file (line)` matches it was built from (the `$CTX` from step 2) in one file — a short wrapper script is the tidy way to do it. Because the saved file then holds both the model's prose *and* the exact lines it was given, you can open those citations later and confirm the model didn't drift. That's the provenance idea, on disk: the answer is only as trustworthy as the matches beside it.
+
+**Any local runtime works, not just Ollama.** The pipeline only needs a local model reachable over HTTP — and most speak the same **OpenAI-compatible** request shape, so you just change the URL. Besides Ollama (`localhost:11434`): **LM Studio** (`localhost:1234/v1`), **llama.cpp**'s `llama-server`, **Jan**, **LocalAI**, and **llamafile** all expose a compatible endpoint. Swap the `curl` target; the rest is identical.
 
 **Why this shape.** peekdocs narrows a 10,000-file corpus to the handful that actually match — exactly and deterministically — so the model reasons over a small, grounded set *with file + line citations* instead of the whole pile, and nothing leaves your machine. In testing, the model correctly answered from the matched lines *and* said when a detail "is not mentioned in the provided search results" rather than inventing one. Compared with MCP: **MCP is conversational** (ask mid-chat, the assistant searches for you); **this pipeline is scripted** (narrow → summarize → report, on a schedule). Same deterministic engine underneath; you choose who drives it.
 

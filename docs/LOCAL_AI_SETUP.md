@@ -25,6 +25,10 @@ Protocol (MCP). If you've never done any of this, you're in the right place. Bud
 > steps follow **[LM Studio's own documentation](https://lmstudio.ai/docs)** or a recent video
 > tutorial. (The same applies to any other runtime, such as Ollama.)
 
+> **On the command line, or already using Ollama?** This guide uses **LM Studio** because it's the
+> simplest all-in-one app. For the terminal-native equivalent — **Ollama + `ollmcp`**, plus the
+> scriptable `--stdout` → local-model pipeline — see [User Guide → Ollama setup](USER_GUIDE.md#ollama-setup).
+
 ---
 
 ## The idea, in plain English
