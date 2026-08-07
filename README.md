@@ -168,6 +168,7 @@ peekdocs also includes a regex pattern workbench for running named collections o
 - [Feature Highlights](#feature-highlights)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
+- [AI assistant — MCP & local models](#mcp-server-optional--search-from-an-ai-assistant)
 - [Who Is peekdocs For?](#who-is-peekdocs-for)
 - [Watch peekdocs in action](#watch-peekdocs-in-action)
 - [How these compose](#how-these-compose)
