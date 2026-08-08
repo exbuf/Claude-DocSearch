@@ -1921,7 +1921,7 @@ QUESTION="Which agreements auto-renew, and how much notice to cancel? Cite the f
 MODEL="qwen2.5:7b-instruct"           # a model you have pulled (check with: ollama list)
 
 cd "$FOLDER" || exit 1
-CTX=$(peekdocs --stdout -r "$QUERY" \
+CTX=$(peekdocs --stdout -r "$QUERY" -m 30 \
       | jq -r '.matches[] | "- \(.filename) (line \(.line_number)): \(.matched_text)"')
 PROMPT="Answer using ONLY these peekdocs results; cite the filename and line; if they don't say, say so.
 
@@ -1929,7 +1929,8 @@ Question: $QUESTION
 
 Results:
 $CTX"
-jq -n --arg m "$MODEL" --arg p "$PROMPT" '{model:$m, prompt:$p, stream:false}' \
+jq -n --arg m "$MODEL" --arg p "$PROMPT" \
+   '{model:$m, prompt:$p, stream:false, options:{num_ctx:8192}}' \
   | curl -s http://localhost:11434/api/generate -d @- | jq -r '.response'
 ```
 
@@ -1953,7 +1954,7 @@ bash ask.sh
 
 **Why a script instead of copy-paste?** The block spans several lines (that multi-line `PROMPT="…"`), and pasting a multi-line command into a live terminal is fragile — a dropped closing `"` leaves the shell stuck at a `dquote>` (or `>`) prompt that looks like a hang or a repeating message (press **Ctrl-C** to bail). A file has none of that, and you can rerun it or change the question anytime. *(For a quick one-off, `echo "$PROMPT" | ollama run "$MODEL"` works too — but `ollama run` leaks terminal cursor codes into piped output, so the API is cleaner in a script.)*
 
-> **Keep `QUERY` narrow — every match goes to the model.** peekdocs feeds *all* the matched lines into the prompt, and a local model's context window is limited: a broad term like `renew` can return hundreds of matches, overflowing the window so the model silently sees only a fraction (whereas `auto-renewal` returns a handful that fit). Search a specific phrase, or point `FOLDER` at a subfolder, so the matches fit. If you genuinely need *all* of them, that is a **census** question — ask peekdocs directly instead.
+> **Keep `QUERY` narrow — every match goes to the model.** peekdocs feeds *all* the matched lines into the prompt, and a local model's context window is limited: a broad term (say `BDNF`, or `renew`) can return hundreds of matches that overflow the window, so the model silently sees only a fraction — and because the "cite the file" instruction sits at the *top* of the prompt, it gets truncated away and the answers come back **uncited**. The script already carries two safety nets: **`-m 30`** caps how many matches peekdocs emits (raise it, or use `-m 0` for no limit), and **`options:{num_ctx:8192}`** widens the model's window so the whole prompt fits. But the real control is a **narrow query** — `-m` keeps only the *first* N matches in scan order, so a broad term makes them cluster in one file; a specific phrase (`auto-renewal`, `BDNF exercise`), or pointing `FOLDER` at a subfolder, gives you fewer, on-topic matches spread across your documents. If you genuinely need *all* of them, that is a **census** question — ask peekdocs directly instead.
 
 **Saving the answer.** The script prints its answer to the terminal — capture it by redirecting or `tee`-ing when you run it (`tee` prints *and* saves):
 
@@ -1975,15 +1976,15 @@ $Question = "Which agreements auto-renew, and how much notice to cancel? Cite th
 $Model    = "qwen2.5:7b-instruct"                # a model you have pulled (ollama list)
 
 Set-Location "$HOME\Documents"                   # the folder to search
-$json = peekdocs --stdout -r $Query 2>$null | Out-String | ConvertFrom-Json
+$json = peekdocs --stdout -r $Query -m 30 2>$null | Out-String | ConvertFrom-Json
 $ctx  = ($json.matches | ForEach-Object {
           "- $($_.filename) (line $($_.line_number)): $($_.matched_text)" }) -join "`n"
 $prompt = "Answer using ONLY these peekdocs results; cite the filename and line; if they don't say, say so.`n`nQuestion: $Question`n`nResults:`n$ctx"
-$body = @{ model = $Model; prompt = $prompt; stream = $false } | ConvertTo-Json
+$body = @{ model = $Model; prompt = $prompt; stream = $false; options = @{ num_ctx = 8192 } } | ConvertTo-Json -Depth 5
 (Invoke-RestMethod -Uri "http://localhost:11434/api/generate" -Method Post -Body $body -ContentType "application/json").response
 ```
 
-If PowerShell refuses to run the file (*"running scripts is disabled on this system"*), launch it once as `powershell -ExecutionPolicy Bypass -File ask.ps1`. The same **keep-`QUERY`-narrow** rule applies — a broad term overflows the model's context. To save the answer, append ` | Tee-Object ~\peekdocs-answer.txt`.
+If PowerShell refuses to run the file (*"running scripts is disabled on this system"*), launch it once as `powershell -ExecutionPolicy Bypass -File ask.ps1`. The `-m 30` cap and `num_ctx 8192` above are the same two safety nets as the bash version — keep `QUERY` narrow and a broad term still won't overflow the model's context. To save the answer, append ` | Tee-Object ~\peekdocs-answer.txt`.
 
 **Why this shape.** peekdocs narrows a 10,000-file corpus to the handful that actually match — exactly and deterministically — so the model reasons over a small, grounded set *with file + line citations* instead of the whole pile, and nothing leaves your machine. In testing, the model correctly answered from the matched lines *and* said when a detail "is not mentioned in the provided search results" rather than inventing one. Compared with MCP: **MCP is conversational** (ask mid-chat, the assistant searches for you); **this pipeline is scripted** (narrow → summarize → report, on a schedule). Same deterministic engine underneath; you choose who drives it.
 
