@@ -1933,6 +1933,10 @@ jq -n --arg m "$MODEL" --arg p "$PROMPT" '{model:$m, prompt:$p, stream:false}' \
   | curl -s http://localhost:11434/api/generate -d @- | jq -r '.response'
 ```
 
+**Creating the file (any platform).** Paste the script into any *plain-text* editor and save it as `ask.sh` — VS Code, `nano`, Notepad, or macOS **TextEdit** (switch *Format → Make Plain Text* first, or it saves as `.rtf` and won't run). From a terminal on macOS/Linux you can also run `nano ask.sh`, paste, then **Ctrl-O**, Enter, **Ctrl-X**.
+
+> **Windows:** this is a **bash** script — it needs `bash`, `curl`, and `jq`, which native `cmd`/PowerShell don't provide. Run it under **WSL** (Windows Subsystem for Linux) or **Git Bash**, then follow the macOS/Linux steps exactly. (peekdocs itself runs fine on native Windows — it's this shell *pipeline* that wants a Unix shell.)
+
 Then run it:
 
 ```bash
