@@ -1935,7 +1935,15 @@ jq -n --arg m "$MODEL" --arg p "$PROMPT" '{model:$m, prompt:$p, stream:false}' \
 
 **Creating the file (any platform).** Paste the script into any *plain-text* editor and save it as `ask.sh` — VS Code, `nano`, Notepad, or macOS **TextEdit** (switch *Format → Make Plain Text* first, or it saves as `.rtf` and won't run). From a terminal on macOS/Linux you can also run `nano ask.sh`, paste, then **Ctrl-O**, Enter, **Ctrl-X**.
 
-> **Windows:** this is a **bash** script — it needs `bash`, `curl`, and `jq`, which native `cmd`/PowerShell don't provide. Run it under **WSL** (Windows Subsystem for Linux) or **Git Bash**, then follow the macOS/Linux steps exactly. (peekdocs itself runs fine on native Windows — it's this shell *pipeline* that wants a Unix shell.)
+> **Windows — you need a Unix shell.** This is a **bash** script (it needs `bash`, `curl`, and `jq`), which native `cmd`/PowerShell don't run. peekdocs itself works fine on native Windows — it's just this shell *pipeline* that wants bash. Two ways to get one:
+>
+> **Option 1 — WSL** (Windows Subsystem for Linux — a real Linux inside Windows):
+> 1. Open **PowerShell as Administrator** (right-click Start → *Terminal (Admin)*), run `wsl --install`, then **restart your PC**. (Installs Ubuntu; needs Windows 10 version 2004+ or Windows 11.)
+> 2. On first launch, an Ubuntu window opens and asks you to create a Linux username + password — one time only.
+> 3. Afterward, open it anytime: type `wsl` in any terminal, or launch **Ubuntu** from the Start menu.
+> 4. Inside WSL, install the tools *there*: `sudo apt update && sudo apt install -y jq`, and peekdocs via `pipx` (see [Installation](INSTALLATION.md)). Your Windows files live under `/mnt/c/Users/<you>/…`, and Ollama running on Windows is reachable at `localhost:11434`. Then follow the macOS/Linux steps.
+>
+> **Option 2 — Git Bash** (simplest if you already `pip install`ed peekdocs on Windows): it gives you `bash` + `curl` and already sees your Windows `peekdocs` on the PATH — just add `jq` (via `winget`, Scoop, or Chocolatey), then run `bash ask.sh` in a Git Bash window.
 
 Then run it:
 
