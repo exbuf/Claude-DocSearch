@@ -1923,6 +1923,10 @@ MODEL="qwen2.5:7b-instruct"           # a model you have pulled (check with: oll
 cd "$FOLDER" || exit 1
 CTX=$(peekdocs --stdout -r "$QUERY" -m 30 \
       | jq -r '.matches[] | "- \(.filename) (line \(.line_number)): \(.matched_text)"')
+if [ -z "$CTX" ]; then                    # no matches → don't let the model invent an answer
+  echo "No matches for \"$QUERY\" — nothing to summarize. Try a broader query."
+  exit 0
+fi
 PROMPT="Answer using ONLY these peekdocs results; cite the filename and line; if they don't say, say so.
 
 Question: $QUESTION
@@ -1954,7 +1958,9 @@ bash ask.sh
 
 **Why a script instead of copy-paste?** The block spans several lines (that multi-line `PROMPT="…"`), and pasting a multi-line command into a live terminal is fragile — a dropped closing `"` leaves the shell stuck at a `dquote>` (or `>`) prompt that looks like a hang or a repeating message (press **Ctrl-C** to bail). A file has none of that, and you can rerun it or change the question anytime. *(For a quick one-off, `echo "$PROMPT" | ollama run "$MODEL"` works too — but `ollama run` leaks terminal cursor codes into piped output, so the API is cleaner in a script.)*
 
-> **Keep `QUERY` narrow — every match goes to the model.** peekdocs feeds *all* the matched lines into the prompt, and a local model's context window is limited: a broad term (say `BDNF`, or `renew`) can return hundreds of matches that overflow the window, so the model silently sees only a fraction — and because the "cite the file" instruction sits at the *top* of the prompt, it gets truncated away and the answers come back **uncited**. The script already carries two safety nets: **`-m 30`** caps how many matches peekdocs emits (raise it, or use `-m 0` for no limit), and **`options:{num_ctx:8192}`** widens the model's window so the whole prompt fits. But the real control is a **narrow query** — `-m` keeps only the *first* N matches in scan order, so a broad term makes them cluster in one file; a specific phrase (`auto-renewal`, `BDNF exercise`), or pointing `FOLDER` at a subfolder, gives you fewer, on-topic matches spread across your documents. If you genuinely need *all* of them, that is a **census** question — ask peekdocs directly instead.
+> **Keep `QUERY` narrow — every match goes to the model.** peekdocs feeds *all* the matched lines into the prompt, and a local model's context window is limited: a broad term (say `BDNF`, or `renew`) can return hundreds of matches that overflow the window, so the model silently sees only a fraction — and because the "cite the file" instruction sits at the *top* of the prompt, it gets truncated away and the answers come back **uncited**. The script already carries two safety nets: **`-m 30`** caps how many matches peekdocs emits (raise it, or use `-m 0` for no limit), and **`options:{num_ctx:8192}`** widens the model's window so the whole prompt fits. But the real control is a **narrow query** — `-m` keeps only the *first* N matches in scan order, so a broad term makes them cluster in one file; a specific phrase (`auto-renewal`), or pointing `FOLDER` at a subfolder, gives you fewer, on-topic matches spread across your documents. If you genuinely need *all* of them, that is a **census** question — ask peekdocs directly instead.
+>
+> **Multi-word topics: use Boolean, not a space.** `-r` is a **regex** flag, so `QUERY="BDNF exercise"` matches only that *adjacent phrase* — usually **zero** hits. For "both words, same paragraph" use `peekdocs --stdout -e "BDNF AND exercise"` (full `AND`/`OR`/`NOT` with parentheses), or `-a` (all terms), or the default OR search (any term). A Boolean query like `-e "BDNF AND exercise"` is also the natural way to get matches *spread across* your documents instead of clustered in one. The script's `if [ -z "$CTX" ]` guard exists for exactly the zero-match case: with no results, a local model will happily **invent** a cited-looking answer, so the script stops and tells you rather than feeding it an empty context.
 
 **Saving the answer.** The script prints its answer to the terminal — capture it by redirecting or `tee`-ing when you run it (`tee` prints *and* saves):
 
@@ -1979,6 +1985,9 @@ Set-Location "$HOME\Documents"                   # the folder to search
 $json = peekdocs --stdout -r $Query -m 30 2>$null | Out-String | ConvertFrom-Json
 $ctx  = ($json.matches | ForEach-Object {
           "- $($_.filename) (line $($_.line_number)): $($_.matched_text)" }) -join "`n"
+if ([string]::IsNullOrWhiteSpace($ctx)) {   # no matches -> don't let the model invent an answer
+  Write-Host "No matches for `"$Query`" — nothing to summarize. Try a broader query."; return
+}
 $prompt = "Answer using ONLY these peekdocs results; cite the filename and line; if they don't say, say so.`n`nQuestion: $Question`n`nResults:`n$ctx"
 $body = @{ model = $Model; prompt = $prompt; stream = $false; options = @{ num_ctx = 8192 } } | ConvertTo-Json -Depth 5
 (Invoke-RestMethod -Uri "http://localhost:11434/api/generate" -Method Post -Body $body -ContentType "application/json").response
