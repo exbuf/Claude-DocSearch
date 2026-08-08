@@ -1935,15 +1935,15 @@ jq -n --arg m "$MODEL" --arg p "$PROMPT" '{model:$m, prompt:$p, stream:false}' \
 
 **Creating the file (any platform).** Paste the script into any *plain-text* editor and save it as `ask.sh` — VS Code, `nano`, Notepad, or macOS **TextEdit** (switch *Format → Make Plain Text* first, or it saves as `.rtf` and won't run). From a terminal on macOS/Linux you can also run `nano ask.sh`, paste, then **Ctrl-O**, Enter, **Ctrl-X**.
 
-> **Windows — you need a Unix shell.** This is a **bash** script (it needs `bash`, `curl`, and `jq`), which native `cmd`/PowerShell don't run. peekdocs itself works fine on native Windows — it's just this shell *pipeline* that wants bash. Two ways to get one:
+> **Windows — easiest routes first** (most Windows users won't need bash at all):
 >
-> **Option 1 — WSL** (Windows Subsystem for Linux — a real Linux inside Windows):
-> 1. Open **PowerShell as Administrator** (right-click Start → *Terminal (Admin)*), run `wsl --install`, then **restart your PC**. (Installs Ubuntu; needs Windows 10 version 2004+ or Windows 11.)
-> 2. On first launch, an Ubuntu window opens and asks you to create a Linux username + password — one time only.
-> 3. Afterward, open it anytime: type `wsl` in any terminal, or launch **Ubuntu** from the Start menu.
-> 4. Inside WSL, install the tools *there*: `sudo apt update && sudo apt install -y jq`, and peekdocs via `pipx` (see [Installation](INSTALLATION.md)). Your Windows files live under `/mnt/c/Users/<you>/…`, and Ollama running on Windows is reachable at `localhost:11434`. Then follow the macOS/Linux steps.
+> **A. Easiest — just ask, no scripting: LM Studio.** A native Windows app: install it, load a model, connect peekdocs, and ask in plain language. See the [Local AI Assistant setup guide](LOCAL_AI_SETUP.md). The scripted pipeline is mainly for *automation*; for everyday interactive use, this is the easy path on Windows.
 >
-> **Option 2 — Git Bash** (simplest if you already `pip install`ed peekdocs on Windows): it gives you `bash` + `curl` and already sees your Windows `peekdocs` on the PATH — just add `jq` (via `winget`, Scoop, or Chocolatey), then run `bash ask.sh` in a Git Bash window.
+> **B. Want a native script (no WSL, no extra tools): PowerShell.** The whole pipeline runs in built-in PowerShell — `ConvertFrom-Json` replaces `jq`, `Invoke-RestMethod` replaces `curl`, no bash needed. See [the scripted pipeline in PowerShell](#the-scripted-pipeline-in-powershell-windows) just below.
+>
+> **C. Prefer the Unix toolchain (the bash script above)?** Run it under **WSL** or **Git Bash**:
+> - **WSL** (a real Linux inside Windows): open **PowerShell as Administrator**, run `wsl --install`, then **restart your PC**. First launch creates a Linux username + password; afterward open it anytime with `wsl` or **Ubuntu** from the Start menu. Then install the tools *inside* WSL — `sudo apt update && sudo apt install -y jq`, and peekdocs via `pipx` (see [Installation](INSTALLATION.md)); your Windows files are under `/mnt/c/Users/<you>/…`, and Ollama running on Windows is reachable at `localhost:11434`.
+> - **Git Bash** (simplest if you already `pip install`ed peekdocs on Windows): gives you `bash` + `curl` and already sees your Windows `peekdocs` on the PATH — just add `jq` (via `winget`, Scoop, or Chocolatey), then run `bash ask.sh`.
 
 Then run it:
 
@@ -1964,6 +1964,26 @@ bash ask.sh | tee ~/peekdocs-answer.txt
 For a **re-verifiable** record, save the answer *together with* the `file (line)` matches it was built from (the `$CTX` from step 2) in one file — a short wrapper script is the tidy way to do it. Because the saved file then holds both the model's prose *and* the exact lines it was given, you can open those citations later and confirm the model didn't drift. That's the provenance idea, on disk: the answer is only as trustworthy as the matches beside it.
 
 **Any local runtime works, not just Ollama.** The pipeline only needs a local model reachable over HTTP — and most speak the same **OpenAI-compatible** request shape, so you just change the URL. Besides Ollama (`localhost:11434`): **LM Studio** (`localhost:1234/v1`), **llama.cpp**'s `llama-server`, **Jan**, **LocalAI**, and **llamafile** all expose a compatible endpoint. Swap the `curl` target; the rest is identical.
+
+#### The scripted pipeline in PowerShell (Windows)
+
+Same workflow in **native PowerShell** — no bash, `jq`, or `curl` required (`ConvertFrom-Json` does the shaping; `Invoke-RestMethod` sends the request). Save it as `ask.ps1` (edit the settings at the top), then run `.\ask.ps1`:
+
+```powershell
+$Query    = "auto-renewal"                       # your search term — keep it NARROW
+$Question = "Which agreements auto-renew, and how much notice to cancel? Cite the file."
+$Model    = "qwen2.5:7b-instruct"                # a model you have pulled (ollama list)
+
+Set-Location "$HOME\Documents"                   # the folder to search
+$json = peekdocs --stdout -r $Query 2>$null | Out-String | ConvertFrom-Json
+$ctx  = ($json.matches | ForEach-Object {
+          "- $($_.filename) (line $($_.line_number)): $($_.matched_text)" }) -join "`n"
+$prompt = "Answer using ONLY these peekdocs results; cite the filename and line; if they don't say, say so.`n`nQuestion: $Question`n`nResults:`n$ctx"
+$body = @{ model = $Model; prompt = $prompt; stream = $false } | ConvertTo-Json
+(Invoke-RestMethod -Uri "http://localhost:11434/api/generate" -Method Post -Body $body -ContentType "application/json").response
+```
+
+If PowerShell refuses to run the file (*"running scripts is disabled on this system"*), launch it once as `powershell -ExecutionPolicy Bypass -File ask.ps1`. The same **keep-`QUERY`-narrow** rule applies — a broad term overflows the model's context. To save the answer, append ` | Tee-Object ~\peekdocs-answer.txt`.
 
 **Why this shape.** peekdocs narrows a 10,000-file corpus to the handful that actually match — exactly and deterministically — so the model reasons over a small, grounded set *with file + line citations* instead of the whole pile, and nothing leaves your machine. In testing, the model correctly answered from the matched lines *and* said when a detail "is not mentioned in the provided search results" rather than inventing one. Compared with MCP: **MCP is conversational** (ask mid-chat, the assistant searches for you); **this pipeline is scripted** (narrow → summarize → report, on a schedule). Same deterministic engine underneath; you choose who drives it.
 
