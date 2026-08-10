@@ -110,7 +110,7 @@ peekdocs is a local document search workbench that scales with your needs. At it
 
 When your work demands more, use fuzzy matching for typos, regex and Boolean expressions for precise patterns, proximity and range filters, yellow-highlighted DOCX/PDF/HTML reports, and reusable Search Suites you can save and schedule.
 
-And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. The supporting search results remain traceable to the original file and line, and with a local model (run on your own machine in [LM Studio](https://lmstudio.ai)), your document content never leaves your machine.
+And when you'd rather ask than search, peekdocs connects to an AI assistant through its optional [MCP](#mcp-server-optional--search-from-an-ai-assistant) interface. Ask the assistant a question in plain language, and it searches your documents with peekdocs, then analyzes and summarizes the results. The supporting search results remain traceable to the original file and line, and with a local model running on your own machine, your document content never leaves your machine.
 
 One workbench—from quick word lookups to AI-assisted document analysis—all driven by a search engine that is deterministic, private, and unconditionally local.
 
@@ -141,7 +141,7 @@ peekdocs also includes a regex pattern workbench for running named collections o
 - **Private by design** — runs entirely on your machine and makes no network calls, ever; works fully offline, even air-gapped.
 - **Highlighted, shareable reports** — a TXT report always, plus optional yellow-highlighted DOCX, PDF, HTML, CSV, or JSON.
 - **Reusable, automatable workflows** — save searches, group them into Search Suites, run named regex collections, watch folders for changes, and schedule scans.
-- **Fast, and AI-ready** — an optional index speeds up repeated searches and enables BM25 relevance ranking; an optional MCP interface lets a local or cloud AI assistant search through the same engine. That means you can ask a plain-language question — *"which contract mentions the roof warranty?"* — and let the assistant do the searching and hand back a short answer cited to file and line, instead of building the search yourself. A step-by-step [Local AI Assistant setup guide](docs/LOCAL_AI_SETUP.md) walks you through installing LM Studio, choosing a free on-your-computer model, and pointing it at your documents — no prior experience assumed.
+- **Fast, and AI-ready** — an optional index speeds up repeated searches and enables BM25 relevance ranking; an optional MCP interface lets a local or cloud AI assistant search through the same engine. That means you can ask a plain-language question — *"which contract mentions the roof warranty?"* — and let the assistant do the searching and hand back a short answer cited to file and line, instead of building the search yourself. A step-by-step [Local AI Assistant setup guide](docs/LOCAL_AI_SETUP.md) walks you through connecting a local AI assistant — via LM Studio or Ollama (a copy-and-paste script is provided for Ollama) — choosing a free on-your-computer model, and pointing it at your documents; no prior experience assumed.
 
 <!--
   TO UPDATE THIS DEMO GIF:
